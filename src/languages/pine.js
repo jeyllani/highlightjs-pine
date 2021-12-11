@@ -1852,8 +1852,7 @@ export default function(hljs) {
       name: 'pine',
       aliases: [
         'pine',
-        'pinescript',
-        'tvps'
+        'pinescript'
       ],
       case_sensitive: true,
       keywords: {
