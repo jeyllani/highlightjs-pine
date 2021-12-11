@@ -1853,7 +1853,6 @@ export default function(hljs) {
       aliases: [
         'pine',
         'pinescript',
-        'ps',
         'tvps'
       ],
       case_sensitive: true,
