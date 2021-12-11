@@ -16,9 +16,9 @@
 
 ```javascript
 var hljs = require('highlight.js');
-var hljsBlade = require('highlightjs-pine');
+var hljsPine = require('highlightjs-pine');
 
-hljs.registerLanguage("blade", hljsPine);
+hljs.registerLanguage("pine", hljsPine);
 hljs.highlightAll();
 ```
 ## License
