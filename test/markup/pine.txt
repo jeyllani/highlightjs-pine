@@ -1,0 +1,20 @@
+// # ============================== BB Inputs ================================ #
+BB_source                   = input.source( defval = close, title = "Source",                             inline = "00", group = "🔵 Bollinger Bands 🔵")
+BB_length                   = input.int(    defval = 20, title = "Length", minval = 1,                    inline = "01", group = "🔵 Bollinger Bands 🔵")
+BB_Multiplicator            = input.float(  defval = 2.0, title = "STD", minval = 0.001, maxval = 50,     inline = "01", group = "🔵 Bollinger Bands 🔵")
+BB_offset                   = input.int(    defval = 0, title ="Offset", minval = -500, maxval = 500,     inline = "01", group = "🔵 Bollinger Bands 🔵")
+// # ============================== BB Inputs ================================ #
+
+// # =========================== BB Calculation ============================== #
+BB_basis                    = ta.sma(source = BB_source, length = BB_length)
+BB_std                      = BB_Multiplicator * ta.stdev(source = BB_source, length = BB_length)
+BB_upper                    = BB_basis + BB_std
+BB_lower                    = BB_basis - BB_std
+// # =========================== BB Calculation ============================== #
+
+// =============================== BB Plotting =============================== #
+plot(series = BB_basis, title = "Basis", color  = color.new(#FF6D00, 0), offset = BB_offset)
+p1                          = plot(series = BB_upper, title = "Upper", color = color.new(#2962FF, 0), offset = BB_offset)
+p2                          = plot(series = BB_lower, title = "Lower", color = color.new(#2962FF, 0), offset = BB_offset)
+fill(plot1 = p1, plot2 = p2, title = "Background", color = color.rgb(33, 150, 243, 95))
+// # ============================= BB Plotting =============================== #

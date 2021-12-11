@@ -1,0 +1,17 @@
+{
+    "name": "highlightjs-pine",
+    "author": "Jeylani B <jeylanib@protonmail.com>",
+    "version": "0.9",
+    "description": "highlight.js syntax definition for pine script V5",
+    "main": "src/languages/pine.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jeyllani/highlightjs-pine.git"
+    },
+
+    "license": "GPL-2.0-only",
+    "bugs": {
+      "url": "https://github.com/jeyllani/highlightjs-pine/issues"
+    },
+    "homepage": "https://github.com/jeyllani/highlightjs-pine"
+  }
