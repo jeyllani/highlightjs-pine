@@ -1,7 +1,7 @@
 {
     "name": "highlightjs-pine",
     "author": "Jeylani B <jeylanib@protonmail.com>",
-    "version": "0.9",
+    "version": "0.1",
     "description": "highlight.js syntax definition for pine script V5",
     "main": "src/languages/pine.js",
     "repository": {
