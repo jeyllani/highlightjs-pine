@@ -95,1726 +95,1726 @@ export default function(hljs) {
       ]
     };
     const FUNCTIONS = {
-      className: 'keyword',
+      className: 'section',
       variants: [
         {
-          match: 'alert(?=\\()'
+          match: '\\balert(?=\\()'
         },
         {
-          match: 'alertcondition(?=\\()'
+          match: '\\balertcondition(?=\\()'
         },
         {
-          match: 'array\\.avg(?=\\()'
+          match: '\\barray\\.avg(?=\\()'
         },
         {
-          match: 'array\\.clear(?=\\()'
+          match: '\\barray\\.clear(?=\\()'
         },
         {
-          match: 'array\\.concat(?=\\()'
+          match: '\\barray\\.concat(?=\\()'
         },
         {
-          match: 'array\\.copy(?=\\()'
+          match: '\\barray\\.copy(?=\\()'
         },
         {
-          match: 'array\\.covariance(?=\\()'
+          match: '\\barray\\.covariance(?=\\()'
         },
         {
-          match: 'array\\.fill(?=\\()'
+          match: '\\barray\\.fill(?=\\()'
         },
         {
-          match: 'array\\.from(?=\\()'
+          match: '\\barray\\.from(?=\\()'
         },
         {
-          match: 'array\\.get(?=\\()'
+          match: '\\barray\\.get(?=\\()'
         },
         {
-          match: 'array\\.includes(?=\\()'
+          match: '\\barray\\.includes(?=\\()'
         },
         {
-          match: 'array\\.indexof(?=\\()'
+          match: '\\barray\\.indexof(?=\\()'
         },
         {
-          match: 'array\\.insert(?=\\()'
+          match: '\\barray\\.insert(?=\\()'
         },
         {
-          match: 'array\\.join(?=\\()'
+          match: '\\barray\\.join(?=\\()'
         },
         {
-          match: 'array\\.lastindexof(?=\\()'
+          match: '\\barray\\.lastindexof(?=\\()'
         },
         {
-          match: 'array\\.max(?=\\()'
+          match: '\\barray\\.max(?=\\()'
         },
         {
-          match: 'array\\.median(?=\\()'
+          match: '\\barray\\.median(?=\\()'
         },
         {
-          match: 'array\\.min(?=\\()'
+          match: '\\barray\\.min(?=\\()'
         },
         {
-          match: 'array\\.mode(?=\\()'
+          match: '\\barray\\.mode(?=\\()'
         },
         {
-          match: 'array\\.new_bool(?=\\()'
+          match: '\\barray\\.new_bool(?=\\()'
         },
         {
-          match: 'array\\.new_box(?=\\()'
+          match: '\\barray\\.new_box(?=\\()'
         },
         {
-          match: 'array\\.new_color(?=\\()'
+          match: '\\barray\\.new_color(?=\\()'
         },
         {
-          match: 'array\\.new_float(?=\\()'
+          match: '\\barray\\.new_float(?=\\()'
         },
         {
-          match: 'array\\.new_int(?=\\()'
+          match: '\\barray\\.new_int(?=\\()'
         },
         {
-          match: 'array\\.new_label(?=\\()'
+          match: '\\barray\\.new_label(?=\\()'
         },
         {
-          match: 'array\\.new_line(?=\\()'
+          match: '\\barray\\.new_line(?=\\()'
         },
         {
-          match: 'array\\.new_string(?=\\()'
+          match: '\\barray\\.new_string(?=\\()'
         },
         {
-          match: 'array\\.new_table(?=\\()'
+          match: '\\barray\\.new_table(?=\\()'
         },
         {
-          match: 'array\\.pop(?=\\()'
+          match: '\\barray\\.pop(?=\\()'
         },
         {
-          match: 'array\\.push(?=\\()'
+          match: '\\barray\\.push(?=\\()'
         },
         {
-          match: 'array\\.range(?=\\()'
+          match: '\\barray\\.range(?=\\()'
         },
         {
-          match: 'array\\.remove(?=\\()'
+          match: '\\barray\\.remove(?=\\()'
         },
         {
-          match: 'array\\.reverse(?=\\()'
+          match: '\\barray\\.reverse(?=\\()'
         },
         {
-          match: 'array\\.set(?=\\()'
+          match: '\\barray\\.set(?=\\()'
         },
         {
-          match: 'array\\.shift(?=\\()'
+          match: '\\barray\\.shift(?=\\()'
         },
         {
-          match: 'array\\.size(?=\\()'
+          match: '\\barray\\.size(?=\\()'
         },
         {
-          match: 'array\\.slice(?=\\()'
+          match: '\\barray\\.slice(?=\\()'
         },
         {
-          match: 'array\\.sort(?=\\()'
+          match: '\\barray\\.sort(?=\\()'
         },
         {
-          match: 'array\\.standardize(?=\\()'
+          match: '\\barray\\.standardize(?=\\()'
         },
         {
-          match: 'array\\.stdev(?=\\()'
+          match: '\\barray\\.stdev(?=\\()'
         },
         {
-          match: 'array\\.sum(?=\\()'
+          match: '\\barray\\.sum(?=\\()'
         },
         {
-          match: 'array\\.unshift(?=\\()'
+          match: '\\barray\\.unshift(?=\\()'
         },
         {
-          match: 'array\\.variance(?=\\()'
+          match: '\\barray\\.variance(?=\\()'
         },
         {
-          match: 'barcolor(?=\\()'
+          match: '\\bbarcolor(?=\\()'
         },
         {
-          match: 'bgcolor(?=\\()'
+          match: '\\bbgcolor(?=\\()'
         },
         {
-          match: 'bool(?=\\()'
+          match: '\\bbool(?=\\()'
         },
         {
-          match: 'box(?=\\()'
+          match: '\\bbox(?=\\()'
         },
         {
-          match: 'box\\.delete(?=\\()'
+          match: '\\bbox\\.delete(?=\\()'
         },
         {
-          match: 'box\\.get_bottom(?=\\()'
+          match: '\\bbox\\.get_bottom(?=\\()'
         },
         {
-          match: 'box\\.get_left(?=\\()'
+          match: '\\bbox\\.get_left(?=\\()'
         },
         {
-          match: 'box\\.get_right(?=\\()'
+          match: '\\bbox\\.get_right(?=\\()'
         },
         {
-          match: 'box\\.get_top(?=\\()'
+          match: '\\bbox\\.get_top(?=\\()'
         },
         {
-          match: 'box\\.new(?=\\()'
+          match: '\\bbox\\.new(?=\\()'
         },
         {
-          match: 'box\\.set_bgcolor(?=\\()'
+          match: '\\bbox\\.set_bgcolor(?=\\()'
         },
         {
-          match: 'box\\.set_border_color(?=\\()'
+          match: '\\bbox\\.set_border_color(?=\\()'
         },
         {
-          match: 'box\\.set_border_style(?=\\()'
+          match: '\\bbox\\.set_border_style(?=\\()'
         },
         {
-          match: 'box\\.set_border_width(?=\\()'
+          match: '\\bbox\\.set_border_width(?=\\()'
         },
         {
-          match: 'box\\.set_bottom(?=\\()'
+          match: '\\bbox\\.set_bottom(?=\\()'
         },
         {
-          match: 'box\\.set_extend(?=\\()'
+          match: '\\bbox\\.set_extend(?=\\()'
         },
         {
-          match: 'box\\.set_left(?=\\()'
+          match: '\\bbox\\.set_left(?=\\()'
         },
         {
-          match: 'box\\.set_lefttop(?=\\()'
+          match: '\\bbox\\.set_lefttop(?=\\()'
         },
         {
-          match: 'box\\.set_right(?=\\()'
+          match: '\\bbox\\.set_right(?=\\()'
         },
         {
-          match: 'box\\.set_rightbottom(?=\\()'
+          match: '\\bbox\\.set_rightbottom(?=\\()'
         },
         {
-          match: 'box\\.set_top(?=\\()'
+          match: '\\bbox\\.set_top(?=\\()'
         },
         {
-          match: 'color(?=\\()'
+          match: '\\bcolor(?=\\()'
         },
         {
-          match: 'color\\.b(?=\\()'
+          match: '\\bcolor\\.b(?=\\()'
         },
         {
-          match: 'color\\.from_gradient(?=\\()'
+          match: '\\bcolor\\.from_gradient(?=\\()'
         },
         {
-          match: 'color\\.g(?=\\()'
+          match: '\\bcolor\\.g(?=\\()'
         },
         {
-          match: 'color\\.new(?=\\()'
+          match: '\\bcolor\\.new(?=\\()'
         },
         {
-          match: 'color\\.r(?=\\()'
+          match: '\\bcolor\\.r(?=\\()'
         },
         {
-          match: 'color\\.rgb(?=\\()'
+          match: '\\bcolor\\.rgb(?=\\()'
         },
         {
-          match: 'color\\.t(?=\\()'
+          match: '\\bcolor\\.t(?=\\()'
         },
         {
-          match: 'dayofmonth(?=\\()'
+          match: '\\bdayofmonth(?=\\()'
         },
         {
-          match: 'dayofweek(?=\\()'
+          match: '\\bdayofweek(?=\\()'
         },
         {
-          match: 'fill(?=\\()'
+          match: '\\bfill(?=\\()'
         },
         {
-          match: 'fixnan(?=\\()'
+          match: '\\bfixnan(?=\\()'
         },
         {
-          match: 'float(?=\\()'
+          match: '\\bfloat(?=\\()'
         },
         {
-          match: 'hline(?=\\()'
+          match: '\\bhline(?=\\()'
         },
         {
-          match: 'hour(?=\\()'
+          match: '\\bhour(?=\\()'
         },
         {
-          match: 'indicator(?=\\()'
+          match: '\\bindicator(?=\\()'
         },
         {
-          match: 'input(?=\\()'
+          match: '\\binput(?=\\()'
         },
         {
-          match: 'input\\.bool(?=\\()'
+          match: '\\binput\\.bool(?=\\()'
         },
         {
-          match: 'input\\.color(?=\\()'
+          match: '\\binput\\.color(?=\\()'
         },
         {
-          match: 'input\\.float(?=\\()'
+          match: '\\binput\\.float(?=\\()'
         },
         {
-          match: 'input\\.int(?=\\()'
+          match: '\\binput\\.int(?=\\()'
         },
         {
-          match: 'input\\.price(?=\\()'
+          match: '\\binput\\.price(?=\\()'
         },
         {
-          match: 'input\\.session(?=\\()'
+          match: '\\binput\\.session(?=\\()'
         },
         {
-          match: 'input\\.source(?=\\()'
+          match: '\\binput\\.source(?=\\()'
         },
         {
-          match: 'input\\.string(?=\\()'
+          match: '\\binput\\.string(?=\\()'
         },
         {
-          match: 'input\\.symbol(?=\\()'
+          match: '\\binput\\.symbol(?=\\()'
         },
         {
-          match: 'input\\.time(?=\\()'
+          match: '\\binput\\.time(?=\\()'
         },
         {
-          match: 'input\\.timeframe(?=\\()'
+          match: '\\binput\\.timeframe(?=\\()'
         },
         {
-          match: 'int(?=\\()'
+          match: '\\bint(?=\\()'
         },
         {
-          match: 'label(?=\\()'
+          match: '\\blabel(?=\\()'
         },
         {
-          match: 'label\\.delete(?=\\()'
+          match: '\\blabel\\.delete(?=\\()'
         },
         {
-          match: 'label\\.get_text(?=\\()'
+          match: '\\blabel\\.get_text(?=\\()'
         },
         {
-          match: 'label\\.get_x(?=\\()'
+          match: '\\blabel\\.get_x(?=\\()'
         },
         {
-          match: 'label\\.get_y(?=\\()'
+          match: '\\blabel\\.get_y(?=\\()'
         },
         {
-          match: 'label\\.new(?=\\()'
+          match: '\\blabel\\.new(?=\\()'
         },
         {
-          match: 'label\\.set_color(?=\\()'
+          match: '\\blabel\\.set_color(?=\\()'
         },
         {
-          match: 'label\\.set_size(?=\\()'
+          match: '\\blabel\\.set_size(?=\\()'
         },
         {
-          match: 'label\\.set_style(?=\\()'
+          match: '\\blabel\\.set_style(?=\\()'
         },
         {
-          match: 'label\\.set_text(?=\\()'
+          match: '\\blabel\\.set_text(?=\\()'
         },
         {
-          match: 'label\\.set_textalign(?=\\()'
+          match: '\\blabel\\.set_textalign(?=\\()'
         },
         {
-          match: 'label\\.set_textcolor(?=\\()'
+          match: '\\blabel\\.set_textcolor(?=\\()'
         },
         {
-          match: 'label\\.set_tooltip(?=\\()'
+          match: '\\blabel\\.set_tooltip(?=\\()'
         },
         {
-          match: 'label\\.set_x(?=\\()'
+          match: '\\blabel\\.set_x(?=\\()'
         },
         {
-          match: 'label\\.set_xloc(?=\\()'
+          match: '\\blabel\\.set_xloc(?=\\()'
         },
         {
-          match: 'label\\.set_xy(?=\\()'
+          match: '\\blabel\\.set_xy(?=\\()'
         },
         {
-          match: 'label\\.set_y(?=\\()'
+          match: '\\blabel\\.set_y(?=\\()'
         },
         {
-          match: 'label\\.set_yloc(?=\\()'
+          match: '\\blabel\\.set_yloc(?=\\()'
         },
         {
-          match: 'library(?=\\()'
+          match: '\\blibrary(?=\\()'
         },
         {
-          match: 'line(?=\\()'
+          match: '\\b\\line(?=\\()'
         },
         {
-          match: 'line\\.delete(?=\\()'
+          match: '\\bline\\.delete(?=\\()'
         },
         {
-          match: 'line\\.get_price(?=\\()'
+          match: '\\bline\\.get_price(?=\\()'
         },
         {
-          match: 'line\\.get_x1(?=\\()'
+          match: '\\bline\\.get_x1(?=\\()'
         },
         {
-          match: 'line\\.get_x2(?=\\()'
+          match: '\\bline\\.get_x2(?=\\()'
         },
         {
-          match: 'line\\.get_y1(?=\\()'
+          match: '\\bline\\.get_y1(?=\\()'
         },
         {
-          match: 'line\\.get_y2(?=\\()'
+          match: '\\bline\\.get_y2(?=\\()'
         },
         {
-          match: 'line\\.new(?=\\()'
+          match: '\\bline\\.new(?=\\()'
         },
         {
-          match: 'line\\.set_color(?=\\()'
+          match: '\\bline\\.set_color(?=\\()'
         },
         {
-          match: 'line\\.set_extend(?=\\()'
+          match: '\\bline\\.set_extend(?=\\()'
         },
         {
-          match: 'line\\.set_style(?=\\()'
+          match: '\\bline\\.set_style(?=\\()'
         },
         {
-          match: 'line\\.set_width(?=\\()'
+          match: '\\bline\\.set_width(?=\\()'
         },
         {
-          match: 'line\\.set_x1(?=\\()'
+          match: '\\bline\\.set_x1(?=\\()'
         },
         {
-          match: 'line\\.set_x2(?=\\()'
+          match: '\\bline\\.set_x2(?=\\()'
         },
         {
-          match: 'line\\.set_xloc(?=\\()'
+          match: '\\bline\\.set_xloc(?=\\()'
         },
         {
-          match: 'line\\.set_xy1(?=\\()'
+          match: '\\bline\\.set_xy1(?=\\()'
         },
         {
-          match: 'line\\.set_xy2(?=\\()'
+          match: '\\bline\\.set_xy2(?=\\()'
         },
         {
-          match: 'line\\.set_y1(?=\\()'
+          match: '\\bline\\.set_y1(?=\\()'
         },
         {
-          match: 'line\\.set_y2(?=\\()'
+          match: '\\bline\\.set_y2(?=\\()'
         },
         {
-          match: 'math\\.abs(?=\\()'
+          match: '\\bmath\\.abs(?=\\()'
         },
         {
-          match: 'math\\.acos(?=\\()'
+          match: '\\bmath\\.acos(?=\\()'
         },
         {
-          match: 'math\\.asin(?=\\()'
+          match: '\\bmath\\.asin(?=\\()'
         },
         {
-          match: 'math\\.atan(?=\\()'
+          match: '\\bmath\\.atan(?=\\()'
         },
         {
-          match: 'math\\.avg(?=\\()'
+          match: '\\bmath\\.avg(?=\\()'
         },
         {
-          match: 'math\\.ceil(?=\\()'
+          match: '\\bmath\\.ceil(?=\\()'
         },
         {
-          match: 'math\\.cos(?=\\()'
+          match: '\\bmath\\.cos(?=\\()'
         },
         {
-          match: 'math\\.exp(?=\\()'
+          match: '\\bmath\\.exp(?=\\()'
         },
         {
-          match: 'math\\.floor(?=\\()'
+          match: '\\bmath\\.floor(?=\\()'
         },
         {
-          match: 'math\\.log(?=\\()'
+          match: '\\bmath\\.log(?=\\()'
         },
         {
-          match: 'math\\.log10(?=\\()'
+          match: '\\bmath\\.log10(?=\\()'
         },
         {
-          match: 'math\\.max(?=\\()'
+          match: '\\bmath\\.max(?=\\()'
         },
         {
-          match: 'math\\.min(?=\\()'
+          match: '\\bmath\\.min(?=\\()'
         },
         {
-          match: 'math\\.pow(?=\\()'
+          match: '\\bmath\\.pow(?=\\()'
         },
         {
-          match: 'math\\.random(?=\\()'
+          match: '\\bmath\\.random(?=\\()'
         },
         {
-          match: 'math\\.round(?=\\()'
+          match: '\\bmath\\.round(?=\\()'
         },
         {
-          match: 'math\\.round_to_mintick(?=\\()'
+          match: '\\bmath\\.round_to_mintick(?=\\()'
         },
         {
-          match: 'math\\.sign(?=\\()'
+          match: '\\bmath\\.sign(?=\\()'
         },
         {
-          match: 'math\\.sin(?=\\()'
+          match: '\\bmath\\.sin(?=\\()'
         },
         {
-          match: 'math\\.sqrt(?=\\()'
+          match: '\\bmath\\.sqrt(?=\\()'
         },
         {
-          match: 'math\\.sum(?=\\()'
+          match: '\\bmath\\.sum(?=\\()'
         },
         {
-          match: 'math\\.tan(?=\\()'
+          match: '\\bmath\\.tan(?=\\()'
         },
         {
-          match: 'math\\.todegrees(?=\\()'
+          match: '\\bmath\\.todegrees(?=\\()'
         },
         {
-          match: 'math\\.toradians(?=\\()'
+          match: '\\bmath\\.toradians(?=\\()'
         },
         {
-          match: 'max_bars_back(?=\\()'
+          match: '\\bmax_bars_back(?=\\()'
         },
         {
-          match: 'minute(?=\\()'
+          match: '\\bminute(?=\\()'
         },
         {
-          match: 'month(?=\\()'
+          match: '\\bmonth(?=\\()'
         },
         {
-          match: 'na(?=\\()'
+          match: '\\bna(?=\\()'
         },
         {
-          match: 'nz(?=\\()'
+          match: '\\bnz(?=\\()'
         },
         {
-          match: 'plot(?=\\()'
+          match: '\\bplot(?=\\()'
         },
         {
-          match: 'plotarrow(?=\\()'
+          match: '\\bplotarrow(?=\\()'
         },
         {
-          match: 'plotbar(?=\\()'
+          match: '\\bplotbar(?=\\()'
         },
         {
-          match: 'plotcandle(?=\\()'
+          match: '\\bplotcandle(?=\\()'
         },
         {
-          match: 'plotchar(?=\\()'
+          match: '\\bplotchar(?=\\()'
         },
         {
-          match: 'plotshape(?=\\()'
+          match: '\\bplotshape(?=\\()'
         },
         {
-          match: 'request\\.dividends(?=\\()'
+          match: '\\brequest\\.dividends(?=\\()'
         },
         {
-          match: 'request\\.earnings(?=\\()'
+          match: '\\brequest\\.earnings(?=\\()'
         },
         {
-          match: 'request\\.financial(?=\\()'
+          match: '\\brequest\\.financial(?=\\()'
         },
         {
-          match: 'request\\.quandl(?=\\()'
+          match: '\\brequest\\.quandl(?=\\()'
         },
         {
-          match: 'request\\.security(?=\\()'
+          match: '\\brequest\\.security(?=\\()'
         },
         {
-          match: 'request\\.splits(?=\\()'
+          match: '\\brequest\\.splits(?=\\()'
         },
         {
-          match: 'runtime\\.error(?=\\()'
+          match: '\\bruntime\\.error(?=\\()'
         },
         {
-          match: 'second(?=\\()'
+          match: '\\bsecond(?=\\()'
         },
         {
-          match: 'str\\.contains(?=\\()'
+          match: '\\bstr\\.contains(?=\\()'
         },
         {
-          match: 'str\\.endswith(?=\\()'
+          match: '\\bstr\\.endswith(?=\\()'
         },
         {
-          match: 'str\\.format(?=\\()'
+          match: '\\bstr\\.format(?=\\()'
         },
         {
-          match: 'str\\.length(?=\\()'
+          match: '\\bstr\\.length(?=\\()'
         },
         {
-          match: 'str\\.lower(?=\\()'
+          match: '\\bstr\\.lower(?=\\()'
         },
         {
-          match: 'str\\.match(?=\\()'
+          match: '\\bstr\\.match(?=\\b\\()'
         },
         {
-          match: 'str\\.pos(?=\\()'
+          match: '\\bstr\\.pos(?=\\()'
         },
         {
-          match: 'str\\.replace(?=\\()'
+          match: '\\bstr\\.replace(?=\\()'
         },
         {
-          match: 'str\\.replace_all(?=\\()'
+          match: '\\bstr\\.replace_all(?=\\()'
         },
         {
-          match: 'str\\.split(?=\\()'
+          match: '\\bstr\\.split(?=\\()'
         },
         {
-          match: 'str\\.startswith(?=\\()'
+          match: '\\bstr\\.startswith(?=\\()'
         },
         {
-          match: 'str\\.substring(?=\\()'
+          match: '\\bstr\\.substring(?=\\()'
         },
         {
-          match: 'str\\.tonumber(?=\\()'
+          match: '\\bstr\\.tonumber(?=\\()'
         },
         {
-          match: 'str\\.tostring(?=\\()'
+          match: '\\bstr\\.tostring(?=\\()'
         },
         {
-          match: 'str\\.upper(?=\\()'
+          match: '\\bstr\\.upper(?=\\()'
         },
         {
-          match: 'strategy(?=\\()'
+          match: '\\bstrategy(?=\\()'
         },
         {
-          match: 'strategy\\.cancel(?=\\()'
+          match: '\\bstrategy\\.cancel(?=\\()'
         },
         {
-          match: 'strategy\\.cancel_all(?=\\()'
+          match: '\\bstrategy\\.cancel_all(?=\\()'
         },
         {
-          match: 'strategy\\.close(?=\\()'
+          match: '\\bstrategy\\.close(?=\\()'
         },
         {
-          match: 'strategy\\.close_all(?=\\()'
+          match: '\\bstrategy\\.close_all(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.commission(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.commission(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.entry_bar_index(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.entry_bar_index(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.entry_price(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.entry_price(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.entry_time(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.entry_time(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.exit_bar_index(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.exit_bar_index(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.exit_price(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.exit_price(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.exit_time(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.exit_time(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.max_drawdown(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.max_drawdown(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.max_runup(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.max_runup(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.profit(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.profit(?=\\()'
         },
         {
-          match: 'strategy\\.closedtrades\\.size(?=\\()'
+          match: '\\bstrategy\\.closedtrades\\.size(?=\\()'
         },
         {
-          match: 'strategy\\.convert_to_account(?=\\()'
+          match: '\\bstrategy\\.convert_to_account(?=\\()'
         },
         {
-          match: 'strategy\\.convert_to_symbol(?=\\()'
+          match: '\\bstrategy\\.convert_to_symbol(?=\\()'
         },
         {
-          match: 'strategy\\.entry(?=\\()'
+          match: '\\bstrategy\\.entry(?=\\()'
         },
         {
-          match: 'strategy\\.exit(?=\\()'
+          match: '\\bstrategy\\.exit(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.commission(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.commission(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.entry_bar_index(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.entry_bar_index(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.entry_price(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.entry_price(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.entry_time(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.entry_time(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.max_drawdown(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.max_drawdown(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.max_runup(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.max_runup(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.profit(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.profit(?=\\()'
         },
         {
-          match: 'strategy\\.opentrades\\.size(?=\\()'
+          match: '\\bstrategy\\.opentrades\\.size(?=\\()'
         },
         {
-          match: 'strategy\\.order(?=\\()'
+          match: '\\bstrategy\\.order(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.allow_entry_in(?=\\()'
+          match: '\\bstrategy\\.risk\\.allow_entry_in(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.max_cons_loss_days(?=\\()'
+          match: '\\bstrategy\\.risk\\.max_cons_loss_days(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.max_drawdown(?=\\()'
+          match: '\\bstrategy\\.risk\\.max_drawdown(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.max_intraday_filled_orders(?=\\()'
+          match: '\\bstrategy\\.risk\\.max_intraday_filled_orders(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.max_intraday_loss(?=\\()'
+          match: '\\bstrategy\\.risk\\.max_intraday_loss(?=\\()'
         },
         {
-          match: 'strategy\\.risk\\.max_position_size(?=\\()'
+          match: '\\bstrategy\\.risk\\.max_position_size(?=\\()'
         },
         {
-          match: 'string(?=\\()'
+          match: '\\bstring(?=\\()'
         },
         {
-          match: 'ta\\.alma(?=\\()'
+          match: '\\bta\\.alma(?=\\()'
         },
         {
-          match: 'ta\\.atr(?=\\()'
+          match: '\\bta\\.atr(?=\\()'
         },
         {
-          match: 'ta\\.barssince(?=\\()'
+          match: '\\bta\\.barssince(?=\\()'
         },
         {
-          match: 'ta\\.bb(?=\\()'
+          match: '\\bta\\.bb(?=\\()'
         },
         {
-          match: 'ta\\.bbw(?=\\()'
+          match: '\\bta\\.bbw(?=\\()'
         },
         {
-          match: 'ta\\.cci(?=\\()'
+          match: '\\bta\\.cci(?=\\()'
         },
         {
-          match: 'ta\\.change(?=\\()'
+          match: '\\bta\\.change(?=\\()'
         },
         {
-          match: 'ta\\.cmo(?=\\()'
+          match: '\\bta\\.cmo(?=\\()'
         },
         {
-          match: 'ta\\.cog(?=\\()'
+          match: '\\bta\\.cog(?=\\()'
         },
         {
-          match: 'ta\\.correlation(?=\\()'
+          match: '\\bta\\.correlation(?=\\()'
         },
         {
-          match: 'ta\\.cross(?=\\()'
+          match: '\\bta\\.cross(?=\\()'
         },
         {
-          match: 'ta\\.crossover(?=\\()'
+          match: '\\bta\\.crossover(?=\\()'
         },
         {
-          match: 'ta\\.crossunder(?=\\()'
+          match: '\\bta\\.crossunder(?=\\()'
         },
         {
-          match: 'ta\\.cum(?=\\()'
+          match: '\\bta\\.cum(?=\\()'
         },
         {
-          match: 'ta\\.dev(?=\\()'
+          match: '\\bta\\.dev(?=\\()'
         },
         {
-          match: 'ta\\.dmi(?=\\()'
+          match: '\\bta\\.dmi(?=\\()'
         },
         {
-          match: 'ta\\.ema(?=\\()'
+          match: '\\bta\\.ema(?=\\()'
         },
         {
-          match: 'ta\\.falling(?=\\()'
+          match: '\\bta\\.falling(?=\\()'
         },
         {
-          match: 'ta\\.highest(?=\\()'
+          match: '\\bta\\.highest(?=\\()'
         },
         {
-          match: 'ta\\.highestbars(?=\\()'
+          match: '\\bta\\.highestbars(?=\\()'
         },
         {
-          match: 'ta\\.hma(?=\\()'
+          match: '\\bta\\.hma(?=\\()'
         },
         {
-          match: 'ta\\.kc(?=\\()'
+          match: '\\bta\\.kc(?=\\()'
         },
         {
-          match: 'ta\\.kcw(?=\\()'
+          match: '\\bta\\.kcw(?=\\()'
         },
         {
-          match: 'ta\\.linreg(?=\\()'
+          match: '\\bta\\.linreg(?=\\()'
         },
         {
-          match: 'ta\\.lowest(?=\\()'
+          match: '\\bta\\.lowest(?=\\()'
         },
         {
-          match: 'ta\\.lowestbars(?=\\()'
+          match: '\\bta\\.lowestbars(?=\\()'
         },
         {
-          match: 'ta\\.macd(?=\\()'
+          match: '\\bta\\.macd(?=\\()'
         },
         {
-          match: 'ta\\.median(?=\\()'
+          match: '\\bta\\.median(?=\\()'
         },
         {
-          match: 'ta\\.mfi(?=\\()'
+          match: '\\bta\\.mfi(?=\\()'
         },
         {
-          match: 'ta\\.mode(?=\\()'
+          match: '\\bta\\.mode(?=\\()'
         },
         {
-          match: 'ta\\.mom(?=\\()'
+          match: '\\bta\\.mom(?=\\()'
         },
         {
-          match: 'ta\\.percentile_linear_interpolation(?=\\()'
+          match: '\\bta\\.percentile_linear_interpolation(?=\\()'
         },
         {
-          match: 'ta\\.percentile_nearest_rank(?=\\()'
+          match: '\\bta\\.percentile_nearest_rank(?=\\()'
         },
         {
-          match: 'ta\\.percentrank(?=\\()'
+          match: '\\bta\\.percentrank(?=\\()'
         },
         {
-          match: 'ta\\.pivothigh(?=\\()'
+          match: '\\bta\\.pivothigh(?=\\()'
         },
         {
-          match: 'ta\\.pivotlow(?=\\()'
+          match: '\\bta\\.pivotlow(?=\\()'
         },
         {
-          match: 'ta\\.range(?=\\()'
+          match: '\\bta\\.range(?=\\()'
         },
         {
-          match: 'ta\\.rising(?=\\()'
+          match: '\\bta\\.rising(?=\\()'
         },
         {
-          match: 'ta\\.rma(?=\\()'
+          match: '\\bta\\.rma(?=\\()'
         },
         {
-          match: 'ta\\.roc(?=\\()'
+          match: '\\bta\\.roc(?=\\()'
         },
         {
-          match: 'ta\\.rsi(?=\\()'
+          match: '\\bta\\.rsi(?=\\()'
         },
         {
-          match: 'ta\\.sar(?=\\()'
+          match: '\\bta\\.sar(?=\\()'
         },
         {
-          match: 'ta\\.sma(?=\\()'
+          match: '\\bta\\.sma(?=\\()'
         },
         {
-          match: 'ta\\.stdev(?=\\()'
+          match: '\\bta\\.stdev(?=\\()'
         },
         {
-          match: 'ta\\.stoch(?=\\()'
+          match: '\\bta\\.stoch(?=\\()'
         },
         {
-          match: 'ta\\.supertrend(?=\\()'
+          match: '\\bta\\.supertrend(?=\\()'
         },
         {
-          match: 'ta\\.swma(?=\\()'
+          match: '\\bta\\.swma(?=\\()'
         },
         {
-          match: 'ta\\.tr(?=\\()'
+          match: '\\bta\\.tr(?=\\()'
         },
         {
-          match: 'ta\\.tsi(?=\\()'
+          match: '\\bta\\.tsi(?=\\()'
         },
         {
-          match: 'ta\\.valuewhen(?=\\()'
+          match: '\\bta\\.valuewhen(?=\\()'
         },
         {
-          match: 'ta\\.variance(?=\\()'
+          match: '\\bta\\.variance(?=\\()'
         },
         {
-          match: 'ta\\.vwap(?=\\()'
+          match: '\\bta\\.vwap(?=\\()'
         },
         {
-          match: 'ta\\.vwma(?=\\()'
+          match: '\\bta\\.vwma(?=\\()'
         },
         {
-          match: 'ta\\.wma(?=\\()'
+          match: '\\bta\\.wma(?=\\()'
         },
         {
-          match: 'ta\\.wpr(?=\\()'
+          match: '\\bta\\.wpr(?=\\()'
         },
         {
-          match: 'table(?=\\()'
+          match: '\\btable(?=\\()'
         },
         {
-          match: 'table\\.cell(?=\\()'
+          match: '\\btable\\.cell(?=\\()'
         },
         {
-          match: 'table\\.cell_set_bgcolor(?=\\()'
+          match: '\\btable\\.cell_set_bgcolor(?=\\()'
         },
         {
-          match: 'table\\.cell_set_height(?=\\()'
+          match: '\\btable\\.cell_set_height(?=\\()'
         },
         {
-          match: 'table\\.cell_set_text(?=\\()'
+          match: '\\btable\\.cell_set_text(?=\\()'
         },
         {
-          match: 'table\\.cell_set_text_color(?=\\()'
+          match: '\\btable\\.cell_set_text_color(?=\\()'
         },
         {
-          match: 'table\\.cell_set_text_halign(?=\\()'
+          match: '\\btable\\.cell_set_text_halign(?=\\()'
         },
         {
-          match: 'table\\.cell_set_text_size(?=\\()'
+          match: '\\btable\\.cell_set_text_size(?=\\()'
         },
         {
-          match: 'table\\.cell_set_text_valign(?=\\()'
+          match: '\\btable\\.cell_set_text_valign(?=\\()'
         },
         {
-          match: 'table\\.cell_set_width(?=\\()'
+          match: '\\btable\\.cell_set_width(?=\\()'
         },
         {
-          match: 'table\\.clear(?=\\()'
+          match: '\\btable\\.clear(?=\\()'
         },
         {
-          match: 'table\\.delete(?=\\()'
+          match: '\\btable\\.delete(?=\\()'
         },
         {
-          match: 'table\\.new(?=\\()'
+          match: '\\btable\\.new(?=\\()'
         },
         {
-          match: 'table\\.set_bgcolor(?=\\()'
+          match: '\\btable\\.set_bgcolor(?=\\()'
         },
         {
-          match: 'table\\.set_border_color(?=\\()'
+          match: '\\btable\\.set_border_color(?=\\()'
         },
         {
-          match: 'table\\.set_border_width(?=\\()'
+          match: '\\btable\\.set_border_width(?=\\()'
         },
         {
-          match: 'table\\.set_frame_color(?=\\()'
+          match: '\\btable\\.set_frame_color(?=\\()'
         },
         {
-          match: 'table\\.set_frame_width(?=\\()'
+          match: '\\btable\\.set_frame_width(?=\\()'
         },
         {
-          match: 'table\\.set_position(?=\\()'
+          match: '\\btable\\.set_position(?=\\()'
         },
         {
-          match: 'ticker\\.heikinashi(?=\\()'
+          match: '\\bticker\\.heikinashi(?=\\()'
         },
         {
-          match: 'ticker\\.kagi(?=\\()'
+          match: '\\bticker\\.kagi(?=\\()'
         },
         {
-          match: 'ticker\\.linebreak(?=\\()'
+          match: '\\bticker\\.linebreak(?=\\()'
         },
         {
-          match: 'ticker\\.modify(?=\\()'
+          match: '\\bticker\\.modify(?=\\()'
         },
         {
-          match: 'ticker\\.new(?=\\()'
+          match: '\\bticker\\.new(?=\\()'
         },
         {
-          match: 'ticker\\.pointfigure(?=\\()'
+          match: '\\bticker\\.pointfigure(?=\\()'
         },
         {
-          match: 'ticker\\.renko(?=\\()'
+          match: '\\bticker\\.renko(?=\\()'
         },
         {
-          match: 'time(?=\\()'
+          match: '\\btime(?=\\()'
         },
         {
-          match: 'time_close(?=\\()'
+          match: '\\btime_close(?=\\()'
         },
         {
-          match: 'timestamp(?=\\()'
+          match: '\\btimestamp(?=\\()'
         },
         {
-          match: 'weekofyear(?=\\()'
+          match: '\\bweekofyear(?=\\()'
         },
         {
-          match: 'year(?=\\()'
+          match: '\\byear(?=\\()'
         }
       ]
     };
   
     const BUILT_IN_VARIABLES = {
-      className: 'built_in',
+      className: 'deletion',
       variants: [
         {
-          match: 'adjustment\\.dividends\\b'
+          match: '\\badjustment\\.dividends\\b'
         },
         {
-          match: 'adjustment\\.none\\b'
+          match: '\\badjustment\\.none\\b'
         },
         {
-          match: 'adjustment\\.splits\\b'
+          match: '\\badjustment\\.splits\\b'
         },
         {
-          match: 'alert\\.freq_all\\b'
+          match: '\\balert\\.freq_all\\b'
         },
         {
-          match: 'alert\\.freq_once_per_bar\\b'
+          match: '\\balert\\.freq_once_per_bar\\b'
         },
         {
-          match: 'alert\\.freq_once_per_bar_close\\b'
+          match: '\\balert\\.freq_once_per_bar_close\\b'
         },
         {
-          match: 'bar_index\\b'
+          match: '\\bbar_index\\b'
         },
         {
-          match: 'barmerge\\.gaps_off\\b'
+          match: '\\bbarmerge\\.gaps_off\\b'
         },
         {
-          match: 'barmerge\\.gaps_on\\b'
+          match: '\\bbarmerge\\.gaps_on\\b'
         },
         {
-          match: 'barmerge\\.lookahead_off\\b'
+          match: '\\bbarmerge\\.lookahead_off\\b'
         },
         {
-          match: 'barmerge\\.lookahead_on\\b'
+          match: '\\bbarmerge\\.lookahead_on\\b'
         },
         {
-          match: 'barstate\\.isconfirmed\\b'
+          match: '\\bbarstate\\.isconfirmed\\b'
         },
         {
-          match: 'barstate\\.isfirst\\b'
+          match: '\\bbarstate\\.isfirst\\b'
         },
         {
-          match: 'barstate\\.ishistory\\b'
+          match: '\\bbarstate\\.ishistory\\b'
         },
         {
-          match: 'barstate\\.islast\\b'
+          match: '\\bbarstate\\.islast\\b'
         },
         {
-          match: 'barstate\\.islastconfirmedhistory\\b'
+          match: '\\bbarstate\\.islastconfirmedhistory\\b'
         },
         {
-          match: 'barstate\\.isnew\\b'
+          match: '\\bbarstate\\.isnew\\b'
         },
         {
-          match: 'barstate\\.isrealtime\\b'
+          match: '\\bbarstate\\.isrealtime\\b'
         },
         {
-          match: 'box\\.all\\b'
+          match: '\\bbox\\.all\\b'
         },
         {
-          match: 'close\\b'
+          match: '\\bclose\\b'
         },
         {
-          match: 'color\\.aqua\\b'
+          match: '\\bcolor\\.aqua\\b'
         },
         {
-          match: 'color\\.black\\b'
+          match: '\\bcolor\\.black\\b'
         },
         {
-          match: 'color\\.blue\\b'
+          match: '\\bcolor\\.blue\\b'
         },
         {
-          match: 'color\\.fuchsia\\b'
+          match: '\\bcolor\\.fuchsia\\b'
         },
         {
-          match: 'color\\.gray\\b'
+          match: '\\bcolor\\.gray\\b'
         },
         {
-          match: 'color\\.green\\b'
+          match: '\\bcolor\\.green\\b'
         },
         {
-          match: 'color\\.lime\\b'
+          match: '\\bcolor\\.lime\\b'
         },
         {
-          match: 'color\\.maroon\\b'
+          match: '\\bcolor\\.maroon\\b'
         },
         {
-          match: 'color\\.navy\\b'
+          match: '\\bcolor\\.navy\\b'
         },
         {
-          match: 'color\\.olive\\b'
+          match: '\\bcolor\\.olive\\b'
         },
         {
-          match: 'color\\.orange\\b'
+          match: '\\bcolor\\.orange\\b'
         },
         {
-          match: 'color\\.purple\\b'
+          match: '\\bcolor\\.purple\\b'
         },
         {
-          match: 'color\\.red\\b'
+          match: '\\bcolor\\.red\\b'
         },
         {
-          match: 'color\\.silver\\b'
+          match: '\\bcolor\\.silver\\b'
         },
         {
-          match: 'color\\.teal\\b'
+          match: '\\bcolor\\.teal\\b'
         },
         {
-          match: 'color\\.white\\b'
+          match: '\\bcolor\\.white\\b'
         },
         {
-          match: 'color\\.yellow\\b'
+          match: '\\bcolor\\.yellow\\b'
         },
         {
-          match: 'currency\\.AUD\\b'
+          match: '\\bcurrency\\.AUD\\b'
         },
         {
-          match: 'currency\\.CAD\\b'
+          match: '\\bcurrency\\.CAD\\b'
         },
         {
-          match: 'currency\\.CHF\\b'
+          match: '\\bcurrency\\.CHF\\b'
         },
         {
-          match: 'currency\\.EUR\\b'
+          match: '\\bcurrency\\.EUR\\b'
         },
         {
-          match: 'currency\\.GBP\\b'
+          match: '\\bcurrency\\.GBP\\b'
         },
         {
-          match: 'currency\\.HKD\\b'
+          match: '\\bcurrency\\.HKD\\b'
         },
         {
-          match: 'currency\\.JPY\\b'
+          match: '\\bcurrency\\.JPY\\b'
         },
         {
-          match: 'currency\\.NOK\\b'
+          match: '\\bcurrency\\.NOK\\b'
         },
         {
-          match: 'currency\\.NONE\\b'
+          match: '\\bcurrency\\.NONE\\b'
         },
         {
-          match: 'currency\\.NZD\\b'
+          match: '\\bcurrency\\.NZD\\b'
         },
         {
-          match: 'currency\\.RUB\\b'
+          match: '\\bcurrency\\.RUB\\b'
         },
         {
-          match: 'currency\\.SEK\\b'
+          match: '\\bcurrency\\.SEK\\b'
         },
         {
-          match: 'currency\\.SGD\\b'
+          match: '\\bcurrency\\.SGD\\b'
         },
         {
-          match: 'currency\\.TRY\\b'
+          match: '\\bcurrency\\.TRY\\b'
         },
         {
-          match: 'currency\\.USD\\b'
+          match: '\\bcurrency\\.USD\\b'
         },
         {
-          match: 'currency\\.ZAR\\b'
+          match: '\\bcurrency\\.ZAR\\b'
         },
         {
-          match: 'dayofmonth\\b'
+          match: '\\bdayofmonth\\b'
         },
         {
-          match: 'dayofweek\\.friday\\b'
+          match: '\\bdayofweek\\.friday\\b'
         },
         {
-          match: 'dayofweek\\.monday\\b'
+          match: '\\bdayofweek\\.monday\\b'
         },
         {
-          match: 'dayofweek\\.saturday\\b'
+          match: '\\bdayofweek\\.saturday\\b'
         },
         {
-          match: 'dayofweek\\.sunday\\b'
+          match: '\\bdayofweek\\.sunday\\b'
         },
         {
-          match: 'dayofweek\\.thursday\\b'
+          match: '\\bdayofweek\\.thursday\\b'
         },
         {
-          match: 'dayofweek\\.tuesday\\b'
+          match: '\\bdayofweek\\.tuesday\\b'
         },
         {
-          match: 'dayofweek\\.wednesday\\b'
+          match: '\\bdayofweek\\.wednesday\\b'
         },
         {
-          match: 'dayofweek\\b'
+          match: '\\bdayofweek\\b'
         },
         {
-          match: 'display\\.all\\b'
+          match: '\\bdisplay\\.all\\b'
         },
         {
-          match: 'display\\.none\\b'
+          match: '\\bdisplay\\.none\\b'
         },
         {
-          match: 'dividends\\.gross\\b'
+          match: '\\bdividends\\.gross\\b'
         },
         {
-          match: 'dividends\\.net\\b'
+          match: '\\bdividends\\.net\\b'
         },
         {
-          match: 'earnings\\.actual\\b'
+          match: '\\bearnings\\.actual\\b'
         },
         {
-          match: 'earnings\\.estimate\\b'
+          match: '\\bearnings\\.estimate\\b'
         },
         {
-          match: 'earnings\\.standardized\\b'
+          match: '\\bearnings\\.standardized\\b'
         },
         {
-          match: 'extend\\.both\\b'
+          match: '\\bextend\\.both\\b'
         },
         {
-          match: 'extend\\.left\\b'
+          match: '\\bextend\\.left\\b'
         },
         {
-          match: 'extend\\.none\\b'
+          match: '\\bextend\\.none\\b'
         },
         {
-          match: 'extend\\.right\\b'
+          match: '\\bextend\\.right\\b'
         },
         {
-          match: 'format\\.inherit\\b'
+          match: '\\bformat\\.inherit\\b'
         },
         {
-          match: 'format\\.mintick\\b'
+          match: '\\bformat\\.mintick\\b'
         },
         {
-          match: 'format\\.percent\\b'
+          match: '\\bformat\\.percent\\b'
         },
         {
-          match: 'format\\.price\\b'
+          match: '\\bformat\\.price\\b'
         },
         {
-          match: 'format\\.volume\\b'
+          match: '\\bformat\\.volume\\b'
         },
         {
-          match: 'high\\b'
+          match: '\\bhigh\\b'
         },
         {
-          match: 'hl2\\b'
+          match: '\\bhl2\\b'
         },
         {
-          match: 'hlc3\\b'
+          match: '\\bhlc3\\b'
         },
         {
-          match: 'hline\\.style_dashed\\b'
+          match: '\\bhline\\.style_dashed\\b'
         },
         {
-          match: 'hline\\.style_dotted\\b'
+          match: '\\bhline\\.style_dotted\\b'
         },
         {
-          match: 'hline\\.style_solid\\b'
+          match: '\\bhline\\.style_solid\\b'
         },
         {
-          match: 'hour\\b'
+          match: '\\bhour\\b'
         },
         {
-          match: 'label\\.all\\b'
+          match: '\\blabel\\.all\\b'
         },
         {
-          match: 'label\\.style_arrowdown\\b'
+          match: '\\blabel\\.style_arrowdown\\b'
         },
         {
-          match: 'label\\.style_arrowup\\b'
+          match: '\\blabel\\.style_arrowup\\b'
         },
         {
-          match: 'label\\.style_circle\\b'
+          match: '\\blabel\\.style_circle\\b'
         },
         {
-          match: 'label\\.style_cross\\b'
+          match: '\\blabel\\.style_cross\\b'
         },
         {
-          match: 'label\\.style_diamond\\b'
+          match: '\\blabel\\.style_diamond\\b'
         },
         {
-          match: 'label\\.style_flag\\b'
+          match: '\\blabel\\.style_flag\\b'
         },
         {
-          match: 'label\\.style_label_center\\b'
+          match: '\\blabel\\.style_label_center\\b'
         },
         {
-          match: 'label\\.style_label_down\\b'
+          match: '\\blabel\\.style_label_down\\b'
         },
         {
-          match: 'label\\.style_label_left\\b'
+          match: '\\blabel\\.style_label_left\\b'
         },
         {
-          match: 'label\\.style_label_lower_left\\b'
+          match: '\\blabel\\.style_label_lower_left\\b'
         },
         {
-          match: 'label\\.style_label_lower_right\\b'
+          match: '\\blabel\\.style_label_lower_right\\b'
         },
         {
-          match: 'label\\.style_label_right\\b'
+          match: '\\blabel\\.style_label_right\\b'
         },
         {
-          match: 'label\\.style_label_up\\b'
+          match: '\\blabel\\.style_label_up\\b'
         },
         {
-          match: 'label\\.style_label_upper_left\\b'
+          match: '\\blabel\\.style_label_upper_left\\b'
         },
         {
-          match: 'label\\.style_label_upper_right\\b'
+          match: '\\blabel\\.style_label_upper_right\\b'
         },
         {
-          match: 'label\\.style_none\\b'
+          match: '\\blabel\\.style_none\\b'
         },
         {
-          match: 'label\\.style_square\\b'
+          match: '\\blabel\\.style_square\\b'
         },
         {
-          match: 'label\\.style_triangledown\\b'
+          match: '\\blabel\\.style_triangledown\\b'
         },
         {
-          match: 'label\\.style_triangleup\\b'
+          match: '\\blabel\\.style_triangleup\\b'
         },
         {
-          match: 'label\\.style_xcross\\b'
+          match: '\\blabel\\.style_xcross\\b'
         },
         {
-          match: 'line\\.all\\b'
+          match: '\\bline\\.all\\b'
         },
         {
-          match: 'line\\.style_arrow_both\\b'
+          match: '\\bline\\.style_arrow_both\\b'
         },
         {
-          match: 'line\\.style_arrow_left\\b'
+          match: '\\bline\\.style_arrow_left\\b'
         },
         {
-          match: 'line\\.style_arrow_right\\b'
+          match: '\\bline\\.style_arrow_right\\b'
         },
         {
-          match: 'line\\.style_dashed\\b'
+          match: '\\bline\\.style_dashed\\b'
         },
         {
-          match: 'line\\.style_dotted\\b'
+          match: '\\bline\\.style_dotted\\b'
         },
         {
-          match: 'line\\.style_solid\\b'
+          match: '\\bline\\.style_solid\\b'
         },
         {
-          match: 'location\\.abovebar\\b'
+          match: '\\blocation\\.abovebar\\b'
         },
         {
-          match: 'location\\.absolute\\b'
+          match: '\\blocation\\.absolute\\b'
         },
         {
-          match: 'location\\.belowbar\\b'
+          match: '\\blocation\\.belowbar\\b'
         },
         {
-          match: 'location\\.bottom\\b'
+          match: '\\blocation\\.bottom\\b'
         },
         {
-          match: 'location\\.top\\b'
+          match: '\\blocation\\.top\\b'
         },
         {
-          match: 'low\\b'
+          match: '\\blow\\b'
         },
         {
-          match: 'math\\.e\\b'
+          match: '\\bmath\\.e\\b'
         },
         {
-          match: 'math\\.phi\\b'
+          match: '\\bmath\\.phi\\b'
         },
         {
-          match: 'math\\.pi\\b'
+          match: '\\bmath\\.pi\\b'
         },
         {
-          match: 'math\\.rphi\\b'
+          match: '\\bmath\\.rphi\\b'
         },
         {
-          match: 'minute\\b'
+          match: '\\bminute\\b'
         },
         {
-          match: 'month\\b'
+          match: '\\bmonth\\b'
         },
         {
-          match: 'na\\b'
+          match: '\\bna\\b'
         },
         {
-          match: 'ohlc4\\b'
+          match: '\\bohlc4\\b'
         },
         {
-          match: 'open\\b'
+          match: '\\bopen\\b'
         },
         {
-          match: 'order\\.ascending\\b'
+          match: '\\border\\.ascending\\b'
         },
         {
-          match: 'order\\.descending\\b'
+          match: '\\border\\.descending\\b'
         },
         {
-          match: 'plot\\.style_area\\b'
+          match: '\\bplot\\.style_area\\b'
         },
         {
-          match: 'plot\\.style_areabr\\b'
+          match: '\\bplot\\.style_areabr\\b'
         },
         {
-          match: 'plot\\.style_circles\\b'
+          match: '\\bplot\\.style_circles\\b'
         },
         {
-          match: 'plot\\.style_columns\\b'
+          match: '\\bplot\\.style_columns\\b'
         },
         {
-          match: 'plot\\.style_cross\\b'
+          match: '\\bplot\\.style_cross\\b'
         },
         {
-          match: 'plot\\.style_histogram\\b'
+          match: '\\bplot\\.style_histogram\\b'
         },
         {
-          match: 'plot\\.style_line\\b'
+          match: '\\bplot\\.style_line\\b'
         },
         {
-          match: 'plot\\.style_linebr\\b'
+          match: '\\bplot\\.style_linebr\\b'
         },
         {
-          match: 'plot\\.style_stepline\\b'
+          match: '\\bplot\\.style_stepline\\b'
         },
         {
-          match: 'plot\\.style_stepline_diamond\\b'
+          match: '\\bplot\\.style_stepline_diamond\\b'
         },
         {
-          match: 'position\\.bottom_center\\b'
+          match: '\\bposition\\.bottom_center\\b'
         },
         {
-          match: 'position\\.bottom_left\\b'
+          match: '\\bposition\\.bottom_left\\b'
         },
         {
-          match: 'position\\.bottom_right\\b'
+          match: '\\bposition\\.bottom_right\\b'
         },
         {
-          match: 'position\\.middle_center\\b'
+          match: '\\bposition\\.middle_center\\b'
         },
         {
-          match: 'position\\.middle_left\\b'
+          match: '\\bposition\\.middle_left\\b'
         },
         {
-          match: 'position\\.middle_right\\b'
+          match: '\\bposition\\.middle_right\\b'
         },
         {
-          match: 'position\\.top_center\\b'
+          match: '\\bposition\\.top_center\\b'
         },
         {
-          match: 'position\\.top_left\\b'
+          match: '\\bposition\\.top_left\\b'
         },
         {
-          match: 'position\\.top_right\\b'
+          match: '\\bposition\\.top_right\\b'
         },
         {
-          match: 'scale\\.left\\b'
+          match: '\\bscale\\.left\\b'
         },
         {
-          match: 'scale\\.none\\b'
+          match: '\\bscale\\.none\\b'
         },
         {
-          match: 'scale\\.right\\b'
+          match: '\\bscale\\.right\\b'
         },
         {
-          match: 'second\\b'
+          match: '\\bsecond\\b'
         },
         {
-          match: 'session\\.extended\\b'
+          match: '\\bsession\\.extended\\b'
         },
         {
-          match: 'session\\.ismarket\\b'
+          match: '\\bsession\\.ismarket\\b'
         },
         {
-          match: 'session\\.ispostmarket\\b'
+          match: '\\bsession\\.ispostmarket\\b'
         },
         {
-          match: 'session\\.ispremarket\\b'
+          match: '\\bsession\\.ispremarket\\b'
         },
         {
-          match: 'session\\.regular\\b'
+          match: '\\bsession\\.regular\\b'
         },
         {
-          match: 'shape\\.arrowdown\\b'
+          match: '\\bshape\\.arrowdown\\b'
         },
         {
-          match: 'shape\\.arrowup\\b'
+          match: '\\bshape\\.arrowup\\b'
         },
         {
-          match: 'shape\\.circle\\b'
+          match: '\\bshape\\.circle\\b'
         },
         {
-          match: 'shape\\.cross\\b'
+          match: '\\bshape\\.cross\\b'
         },
         {
-          match: 'shape\\.diamond\\b'
+          match: '\\bshape\\.diamond\\b'
         },
         {
-          match: 'shape\\.flag\\b'
+          match: '\\bshape\\.flag\\b'
         },
         {
-          match: 'shape\\.labeldown\\b'
+          match: '\\bshape\\.labeldown\\b'
         },
         {
-          match: 'shape\\.labelup\\b'
+          match: '\\bshape\\.labelup\\b'
         },
         {
-          match: 'shape\\.square\\b'
+          match: '\\bshape\\.square\\b'
         },
         {
-          match: 'shape\\.triangledown\\b'
+          match: '\\bshape\\.triangledown\\b'
         },
         {
-          match: 'shape\\.triangleup\\b'
+          match: '\\bshape\\.triangleup\\b'
         },
         {
-          match: 'shape\\.xcross\\b'
+          match: '\\bshape\\.xcross\\b'
         },
         {
-          match: 'size\\.auto\\b'
+          match: '\\bsize\\.auto\\b'
         },
         {
-          match: 'size\\.huge\\b'
+          match: '\\bsize\\.huge\\b'
         },
         {
-          match: 'size\\.large\\b'
+          match: '\\bsize\\.large\\b'
         },
         {
-          match: 'size\\.normal\\b'
+          match: '\\bsize\\.normal\\b'
         },
         {
-          match: 'size\\.small\\b'
+          match: '\\bsize\\.small\\b'
         },
         {
-          match: 'size\\.tiny\\b'
+          match: '\\bsize\\.tiny\\b'
         },
         {
-          match: 'splits\\.denominator\\b'
+          match: '\\bsplits\\.denominator\\b'
         },
         {
-          match: 'splits\\.numerator\\b'
+          match: '\\bsplits\\.numerator\\b'
         },
         {
-          match: 'strategy\\.account_currency\\b'
+          match: '\\bstrategy\\.account_currency\\b'
         },
         {
-          match: 'strategy\\.cash\\b'
+          match: '\\bstrategy\\.cash\\b'
         },
         {
-          match: 'strategy\\.closedtrades\\b'
+          match: '\\bstrategy\\.closedtrades\\b'
         },
         {
-          match: 'strategy\\.commission\\.cash_per_contract\\b'
+          match: '\\bstrategy\\.commission\\.cash_per_contract\\b'
         },
         {
-          match: 'strategy\\.commission\\.cash_per_order\\b'
+          match: '\\bstrategy\\.commission\\.cash_per_order\\b'
         },
         {
-          match: 'strategy\\.commission\\.percent\\b'
+          match: '\\bstrategy\\.commission\\.percent\\b'
         },
         {
-          match: 'strategy\\.direction\\.all\\b'
+          match: '\\bstrategy\\.direction\\.all\\b'
         },
         {
-          match: 'strategy\\.direction\\.long\\b'
+          match: '\\bstrategy\\.direction\\.long\\b'
         },
         {
-          match: 'strategy\\.direction\\.short\\b'
+          match: '\\bstrategy\\.direction\\.short\\b'
         },
         {
-          match: 'strategy\\.equity\\b'
+          match: '\\bstrategy\\.equity\\b'
         },
         {
-          match: 'strategy\\.eventrades\\b'
+          match: '\\bstrategy\\.eventrades\\b'
         },
         {
-          match: 'strategy\\.fixed\\b'
+          match: '\\bstrategy\\.fixed\\b'
         },
         {
-          match: 'strategy\\.grossloss\\b'
+          match: '\\bstrategy\\.grossloss\\b'
         },
         {
-          match: 'strategy\\.grossprofit\\b'
+          match: '\\bstrategy\\.grossprofit\\b'
         },
         {
-          match: 'strategy\\.initial_capital\\b'
+          match: '\\bstrategy\\.initial_capital\\b'
         },
         {
-          match: 'strategy\\.long\\b'
+          match: '\\bstrategy\\.long\\b'
         },
         {
-          match: 'strategy\\.losstrades\\b'
+          match: '\\bstrategy\\.losstrades\\b'
         },
         {
-          match: 'strategy\\.max_contracts_held_all\\b'
+          match: '\\bstrategy\\.max_contracts_held_all\\b'
         },
         {
-          match: 'strategy\\.max_contracts_held_long\\b'
+          match: '\\bstrategy\\.max_contracts_held_long\\b'
         },
         {
-          match: 'strategy\\.max_contracts_held_short\\b'
+          match: '\\bstrategy\\.max_contracts_held_short\\b'
         },
         {
-          match: 'strategy\\.max_drawdown\\b'
+          match: '\\bstrategy\\.max_drawdown\\b'
         },
         {
-          match: 'strategy\\.netprofit\\b'
+          match: '\\bstrategy\\.netprofit\\b'
         },
         {
-          match: 'strategy\\.oca\\.cancel\\b'
+          match: '\\bstrategy\\.oca\\.cancel\\b'
         },
         {
-          match: 'strategy\\.oca\\.none\\b'
+          match: '\\bstrategy\\.oca\\.none\\b'
         },
         {
-          match: 'strategy\\.oca\\.reduce\\b'
+          match: '\\bstrategy\\.oca\\.reduce\\b'
         },
         {
-          match: 'strategy\\.openprofit\\b'
+          match: '\\bstrategy\\.openprofit\\b'
         },
         {
-          match: 'strategy\\.opentrades\\b'
+          match: '\\bstrategy\\.opentrades\\b'
         },
         {
-          match: 'strategy\\.percent_of_equity\\b'
+          match: '\\bstrategy\\.percent_of_equity\\b'
         },
         {
-          match: 'strategy\\.position_avg_price\\b'
+          match: '\\bstrategy\\.position_avg_price\\b'
         },
         {
-          match: 'strategy\\.position_entry_name\\b'
+          match: '\\bstrategy\\.position_entry_name\\b'
         },
         {
-          match: 'strategy\\.position_size\\b'
+          match: '\\bstrategy\\.position_size\\b'
         },
         {
-          match: 'strategy\\.short\\b'
+          match: '\\bstrategy\\.short\\b'
         },
         {
-          match: 'strategy\\.wintrades\\b'
+          match: '\\bstrategy\\.wintrades\\b'
         },
         {
-          match: 'syminfo\\.basecurrency\\b'
+          match: '\\bsyminfo\\.basecurrency\\b'
         },
         {
-          match: 'syminfo\\.currency\\b'
+          match: '\\bsyminfo\\.currency\\b'
         },
         {
-          match: 'syminfo\\.description\\b'
+          match: '\\bsyminfo\\.description\\b'
         },
         {
-          match: 'syminfo\\.mintick\\b'
+          match: '\\bsyminfo\\.mintick\\b'
         },
         {
-          match: 'syminfo\\.pointvalue\\b'
+          match: '\\bsyminfo\\.pointvalue\\b'
         },
         {
-          match: 'syminfo\\.prefix\\b'
+          match: '\\bsyminfo\\.prefix\\b'
         },
         {
-          match: 'syminfo\\.root\\b'
+          match: '\\bsyminfo\\.root\\b'
         },
         {
-          match: 'syminfo\\.session\\b'
+          match: '\\bsyminfo\\.session\\b'
         },
         {
-          match: 'syminfo\\.ticker\\b'
+          match: '\\bsyminfo\\.ticker\\b'
         },
         {
-          match: 'syminfo\\.tickerid\\b'
+          match: '\\bsyminfo\\.tickerid\\b'
         },
         {
-          match: 'syminfo\\.timezone\\b'
+          match: '\\bsyminfo\\.timezone\\b'
         },
         {
-          match: 'syminfo\\.type\\b'
+          match: '\\bsyminfo\\.type\\b'
         },
         {
-          match: 'ta\\.accdist\\b'
+          match: '\\bta\\.accdist\\b'
         },
         {
-          match: 'ta\\.iii\\b'
+          match: '\\bta\\.iii\\b'
         },
         {
-          match: 'ta\\.nvi\\b'
+          match: '\\bta\\.nvi\\b'
         },
         {
-          match: 'ta\\.obv\\b'
+          match: '\\bta\\.obv\\b'
         },
         {
-          match: 'ta\\.pvi\\b'
+          match: '\\bta\\.pvi\\b'
         },
         {
-          match: 'ta\\.pvt\\b'
+          match: '\\bta\\.pvt\\b'
         },
         {
-          match: 'ta\\.tr\\b'
+          match: '\\bta\\.tr\\b'
         },
         {
-          match: 'ta\\.vwap\\b'
+          match: '\\bta\\.vwap\\b'
         },
         {
-          match: 'ta\\.wad\\b'
+          match: '\\bta\\.wad\\b'
         },
         {
-          match: 'ta\\.wvad\\b'
+          match: '\\bta\\.wvad\\b'
         },
         {
-          match: 'table\\.all\\b'
+          match: '\\btable\\.all\\b'
         },
         {
-          match: 'text\\.align_bottom\\b'
+          match: '\\btext\\.align_bottom\\b'
         },
         {
-          match: 'text\\.align_center\\b'
+          match: '\\btext\\.align_center\\b'
         },
         {
-          match: 'text\\.align_left\\b'
+          match: '\\btext\\.align_left\\b'
         },
         {
-          match: 'text\\.align_right\\b'
+          match: '\\btext\\.align_right\\b'
         },
         {
-          match: 'text\\.align_top\\b'
+          match: '\\btext\\.align_top\\b'
         },
         {
-          match: 'time\\b'
+          match: '\\btime\\b'
         },
         {
-          match: 'time_close\\b'
+          match: '\\btime_close\\b'
         },
         {
-          match: 'time_tradingday\\b'
+          match: '\\btime_tradingday\\b'
         },
         {
-          match: 'timeframe\\.isdaily\\b'
+          match: '\\btimeframe\\.isdaily\\b'
         },
         {
-          match: 'timeframe\\.isdwm\\b'
+          match: '\\btimeframe\\.isdwm\\b'
         },
         {
-          match: 'timeframe\\.isintraday\\b'
+          match: '\\btimeframe\\.isintraday\\b'
         },
         {
-          match: 'timeframe\\.isminutes\\b'
+          match: '\\btimeframe\\.isminutes\\b'
         },
         {
-          match: 'timeframe\\.ismonthly\\b'
+          match: '\\btimeframe\\.ismonthly\\b'
         },
         {
-          match: 'timeframe\\.isseconds\\b'
+          match: '\\btimeframe\\.isseconds\\b'
         },
         {
-          match: 'timeframe\\.isweekly\\b'
+          match: '\\btimeframe\\.isweekly\\b'
         },
         {
-          match: 'timeframe\\.multiplier\\b'
+          match: '\\btimeframe\\.multiplier\\b'
         },
         {
-          match: 'timeframe\\.period\\b'
+          match: '\\btimeframe\\.period\\b'
         },
         {
-          match: 'timenow\\b'
+          match: '\\btimenow\\b'
         },
         {
-          match: 'volume\\b'
+          match: '\\bvolume\\b'
         },
         {
-          match: 'weekofyear\\b'
+          match: '\\bweekofyear\\b'
         },
         {
-          match: 'xloc\\.bar_index\\b'
+          match: '\\bxloc\\.bar_index\\b'
         },
         {
-          match: 'xloc\\.bar_time\\b'
+          match: '\\bxloc\\.bar_time\\b'
         },
         {
-          match: 'year\\b'
+          match: '\\byear\\b'
         },
         {
-          match: 'yloc\\.abovebar\\b'
+          match: '\\byloc\\.abovebar\\b'
         },
         {
-          match: 'yloc\\.belowbar\\b'
+          match: '\\byloc\\.belowbar\\b'
         },
         {
-          match: 'yloc\\.price\\b'
+          match: '\\byloc\\.price\\b'
         }
   
       ]
@@ -1835,13 +1835,7 @@ export default function(hljs) {
       'var',
       'varip',
       'while',
-      'bool',
-      'int',
-      'float',
-      'label',
-      'array',
-      'series',
-      'color'
+  
     ];
     const LITERALS = [
       "true",
@@ -1874,6 +1868,10 @@ export default function(hljs) {
         {
           className: 'number',
           begin: '\\[0-9]+'
+        },
+        {
+          className: 'variable',
+          match: '\\[A-Za-z0-9_](?=\\()'
         }
       ]
     };
