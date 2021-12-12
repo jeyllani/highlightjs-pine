@@ -4,7 +4,7 @@ Author: Jeylani B <jeylanib@protonmail.com>
 Website: https://github.com/jeyllani
 Category: common
 */
-export default function(hljs) {
+export default function (hljs) {
   const COMMENTS = {
     className: 'comment',
     variants: [
@@ -18,7 +18,7 @@ export default function(hljs) {
     className: 'string',
     begin: '\'',
     end: '\'',
-    contains: [ hljs.BACKSLASH_ESCAPE ],
+    contains: [hljs.BACKSLASH_ESCAPE],
     relevance: 0
   };
 
@@ -26,7 +26,7 @@ export default function(hljs) {
     className: 'string',
     begin: '"',
     end: '"',
-    contains: [ hljs.BACKSLASH_ESCAPE ]
+    contains: [hljs.BACKSLASH_ESCAPE]
   };
 
   const OPERATORS = {
@@ -87,13 +87,14 @@ export default function(hljs) {
         match: '\\?'
       },
       {
-        match: '\\:'
+        match: '\\:='
       },
       {
-        match: '='
+        match: '\\:'
       }
     ]
   };
+
   const FUNCTIONS = {
     className: 'section',
     variants: [
@@ -1825,7 +1826,6 @@ export default function(hljs) {
     'export',
     'else',
     'for',
-    'if',
     'import',
     'not',
     'or',
@@ -1835,8 +1835,27 @@ export default function(hljs) {
     'var',
     'varip',
     'while',
+    'bool',
+    'color',
+    'int',
+    'float',
+    'string',
+    'array',
+    'label',
+    'color'
 
   ];
+
+  const KEYWORD_ERR = {
+    className: '',
+    variants: [
+      // To avoid highlighting 'Keywords' alone before =
+      {
+        match: '(if|and|export|else|for|if|import|not|or|series|simple|switch|var|varip|while|bool|color|int|float|string|array|label|color)\\s*(?=\\=)'
+      }
+    ]
+  };
+
   const LITERALS = [
     "true",
     "false"
@@ -1860,13 +1879,14 @@ export default function(hljs) {
       OPERATORS,
       FUNCTIONS,
       BUILT_IN_VARIABLES,
+      KEYWORD_ERR,
       {
         className: '',
-        match: '\\[A-Za-z0-9_]+'
+        begin: '\\[A-Za-z0-9_]+'
       },
       {
         className: 'number',
-        match: '\\[0-9]+'
+        begin: '\\[0-9]+'
       },
       {
         className: '',
@@ -1879,6 +1899,10 @@ export default function(hljs) {
       {
         className: 'number',
         match: '\\b\\d+\\b'
+      },
+      {
+        className: 'symbol',
+        match: '='
       }
     ]
   };

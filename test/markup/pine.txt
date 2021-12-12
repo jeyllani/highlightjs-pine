@@ -1,20 +1,347 @@
-// # ============================== BB Inputs ================================ #
-BB_source                   = input.source( defval = close, title = "Source",                             inline = "00", group = "🔵 Bollinger Bands 🔵")
-BB_length                   = input.int(    defval = 20, title = "Length", minval = 1,                    inline = "01", group = "🔵 Bollinger Bands 🔵")
-BB_Multiplicator            = input.float(  defval = 2.0, title = "STD", minval = 0.001, maxval = 50,     inline = "01", group = "🔵 Bollinger Bands 🔵")
-BB_offset                   = input.int(    defval = 0, title ="Offset", minval = -500, maxval = 500,     inline = "01", group = "🔵 Bollinger Bands 🔵")
-// # ============================== BB Inputs ================================ #
+// ============================= Auto Fib Inputs ============================= #
+depthTooltip                = "The minimum number of bars that will be taken into account when calculating the indicator."
+depth                       = sfdinputint(    defval = 10       , title = "Depth" , minval = 1 , inline = "Pivots" , tooltip = depthTooltip , group = "🎨 Auto Fibonnaci 🎨")
+reverse                     = input.bool(   defval = false    , title = "Reverse"                    , inline = "01"           , group = "🎨 Auto Fibonnaci 🎨")
+var extendLeft              = input.bool(   defval = false    , title = "Extend Left | Extend Right" , inline = "Extend Lines" , group = "🎨 Auto Fibonnaci 🎨")
+var extendRight             = input.bool(   defval = true     , title = ""                           , inline = "Extend Lines" , group = "🎨 Auto Fibonnaci 🎨")
+prices                      = input.bool(   defval = true     , title = "Show Prices"                , inline = "02"           , group = "🎨 Auto Fibonnaci 🎨")
+levels                      = input.bool(   defval = true     , title = "Show Levels"                , inline="Levels"         , group = "🎨 Auto Fibonnaci 🎨")
+levelsFormat                = input.string( defval = "Values" , title = ""                , options = ["Values" , "Percent"] , inline ="Levels" , group = "🎨 Auto Fibonnaci 🎨")
+labelsPosition              = input.string( defval = "Left"   , title = "Labels Position" , options = ["Left"   , "Right"]   , inline = "03"    , group = "🎨 Auto Fibonnaci 🎨")
+// # =========================== Auto Fib Inputs ============================= #
 
-// # =========================== BB Calculation ============================== #
-BB_basis                    = ta.sma(source = BB_source, length = BB_length)
-BB_std                      = BB_Multiplicator * ta.stdev(source = BB_source, length = BB_length)
-BB_upper                    = BB_basis + BB_std
-BB_lower                    = BB_basis - BB_std
-// # =========================== BB Calculation ============================== #
+// # ======================== Auto Fib Calculation =========================== #
+var extending               = extend.none
 
-// =============================== BB Plotting =============================== #
-plot(series = BB_basis, title = "Basis", color  = color.new(#FF6D00, 0), offset = BB_offset)
-p1                          = plot(series = BB_upper, title = "Upper", color = color.new(#2962FF, 0), offset = BB_offset)
-p2                          = plot(series = BB_lower, title = "Lower", color = color.new(#2962FF, 0), offset = BB_offset)
-fill(plot1 = p1, plot2 = p2, title = "Background", color = color.rgb(33, 150, 243, 95))
-// # ============================= BB Plotting =============================== #
+if extendLeft and extendRight
+    extending               := extend.both
+    extending
+if extendLeft and not extendRight
+    extending               := extend.left
+    extending
+if not extendLeft and extendRight
+    extending               := extend.right
+    extending
+
+
+var float upperThreshold    = 0.236
+var float lowerThreshold    = 1.0
+
+var line lineLastHL         = na
+var line lineLastLH         = na
+var line lineLast           = na
+
+var float iLastH            = 0
+var float iLastL            = 0
+var float pLastH            = 0
+var float pLastL            = 0
+
+var float[] iPivotsH        = array.new_float()
+var float[] iPivotsL        = array.new_float()
+var float[] pPivotsH        = array.new_float()
+var float[] pPivotsL        = array.new_float()
+
+var isHighLast              = false
+var float startPrice        = na
+var float endPrice          = na
+var float diff              = na
+
+pivots(src, length, isHigh) =>
+    l2                      = length * 2
+    c                       = nz(src[length])
+    ok                      = true
+    for i                   = 0 to l2 by 1
+        if isHigh and src[i] > c
+            ok              := false
+            ok
+
+        if not isHigh and src[i] < c
+            ok              := false
+            ok
+    if ok
+        [bar_index[length], c]
+    else
+        [int(na), float(na)]
+[iH, pH]                    = pivots(high, depth / 2, true)
+[iL, pL]                    = pivots(low, depth / 2, false)
+
+countPivotsH                = array.size(iPivotsH)
+countPivotsL                = array.size(iPivotsL)
+
+if countPivotsH > 0 and countPivotsL > 0
+    iLastH                  := array.get(iPivotsH, countPivotsH - 1)
+    iLastL                  := array.get(iPivotsL, countPivotsL - 1)
+    isHighLast              := iLastH > iLastL
+    iLastH                  := 1
+    if isHighLast
+        if not na(iH)
+            pLastH          := array.get(pPivotsH, countPivotsH - 1)
+            if pH > pLastH
+                array.set(iPivotsH, countPivotsH - 1, iH)
+                array.set(pPivotsH, countPivotsH - 1, pH)
+            iH              := na
+            iH
+    else
+        if not na(iL)
+            pLastL          := array.get(pPivotsL, countPivotsL - 1)
+            if pL < pLastL
+                array.set(iPivotsL, countPivotsL - 1, iL)
+                array.set(pPivotsL, countPivotsL - 1, pL)
+            iL              := na
+            iL
+
+if not na(iH)
+    array.push(iPivotsH, iH)
+    array.push(pPivotsH, pH)
+
+if not na(iL)
+    array.push(iPivotsL, iL)
+    array.push(pPivotsL, pL)
+
+pPivotsHCopy                = array.copy(pPivotsH)
+pPivotsLCopy                = array.copy(pPivotsL)
+iPivotsHCopy                = array.copy(iPivotsH)
+iPivotsLCopy                = array.copy(iPivotsL)
+
+if barstate.islast
+    for j                   = bar_index to 0 by 1
+        if array.size(iPivotsHCopy) == 0 or array.size(iPivotsLCopy) == 0
+            break
+
+        iLastH              := array.pop(iPivotsHCopy)
+        iLastL              := array.pop(iPivotsLCopy)
+
+        pLastH              := array.pop(pPivotsHCopy)
+        pLastL              := array.pop(pPivotsLCopy)
+
+        iPrevPivot          = 0.0
+        pPrevPivot          = 0.0
+
+        isHighLast          := iLastH > iLastL
+
+        if isHighLast
+            for i           = array.size(iPivotsHCopy) - 1 to 0 by 1
+                if i < 0
+                    break
+                else if array.get(iPivotsHCopy, i) < iLastL
+                    break
+                if array.get(pPivotsHCopy, i) > pLastH
+                    iLastH  := array.pop(iPivotsHCopy)
+                    pLastH  := array.pop(pPivotsHCopy)
+                    pLastH
+                else
+                    array.remove(iPivotsHCopy, i)
+                    array.remove(pPivotsHCopy, i)
+        else
+            for i           = array.size(iPivotsLCopy) - 1 to 0 by 1
+                if i < 0
+                    break
+                else if array.get(iPivotsLCopy, i) < iLastH
+                    break
+                if array.get(pPivotsLCopy, i) < pLastL
+                    iLastL  := array.pop(iPivotsLCopy)
+                    pLastL  := array.pop(pPivotsLCopy)
+                    pLastL
+                else
+                    array.remove(iPivotsLCopy, i)
+                    array.remove(pPivotsLCopy, i)
+
+        if array.size(iPivotsHCopy) == 0 or array.size(iPivotsLCopy) == 0
+            break
+
+        isHighLast          := iLastH > iLastL
+
+        if isHighLast
+            iPrevPivot      := array.get(iPivotsHCopy, array.size(iPivotsHCopy) - 1)
+            pPrevPivot      := array.get(pPivotsHCopy, array.size(iPivotsHCopy) - 1)
+            pPrevPivot
+        else
+            iPrevPivot      := array.get(iPivotsLCopy, array.size(iPivotsLCopy) - 1)
+            pPrevPivot      := array.get(pPivotsLCopy, array.size(iPivotsLCopy) - 1)
+            pPrevPivot
+
+        if isHighLast
+            startPrice      := pPrevPivot
+            endPrice        := pLastL
+            diff            := math.abs(startPrice - endPrice)
+            if pLastH > endPrice + diff * lowerThreshold or pLastH < endPrice + diff * upperThreshold
+                array.push(iPivotsLCopy, iLastL)
+                array.push(pPivotsLCopy, pLastL)
+                continue
+            line.delete(lineLastHL)
+            line.delete(lineLastLH)
+            line.delete(lineLast)
+            lineLastHL      := line.new(int(iPrevPivot), pPrevPivot, int(iLastL), pLastL, color=color.red, width=1, style=line.style_dashed)
+            lineLastLH      := line.new(int(iLastL), pLastL, int(iLastH), pLastH, color=color.green, width=1, style=line.style_dashed)
+            lineLast        := lineLastLH
+            lineLast
+        else
+            startPrice      := pPrevPivot
+            endPrice        := pLastH
+            diff            := math.abs(startPrice - endPrice)
+            if pLastL < endPrice - diff * lowerThreshold or pLastL > endPrice - diff * upperThreshold
+                array.push(iPivotsHCopy, iLastH)
+                array.push(pPivotsHCopy, pLastH)
+                continue
+            line.delete(lineLastHL)
+            line.delete(lineLastLH)
+            line.delete(lineLast)
+            lineLastLH      := line.new(int(iPrevPivot), pPrevPivot, int(iLastH), pLastH, color=color.red, width=1, style=line.style_dashed)
+            lineLastHL      := line.new(int(iLastH), pLastH, int(iLastL), pLastL, color=color.green, width=1, style=line.style_dashed)
+            lineLast        := lineLastHL
+            lineLast
+        break
+
+_draw_line(price, col) =>
+    var id                  = line.new(0, price, 0, price, color=col, width=1, extend=extending)
+    if not na(lineLast)
+        line.set_xy1(id, line.get_x1(lineLast), price)
+        line.set_xy2(id, line.get_x2(lineLast), price)
+
+_draw_label(price, txt, txtColor) =>
+    if not na(price)
+        x                   = labelsPosition == "Left" ? line.get_x1(lineLast) : not extendRight ? line.get_x2(lineLast) : bar_index
+        labelStyle          = labelsPosition == "Left" ? label.style_label_right : label.style_label_left
+        align               = labelsPosition == "Left" ? text.align_right : text.align_left
+        labelsAlignStrLeft  = txt + "\n ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏ \n"
+        labelsAlignStrRight = "       " + txt + "\n ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏ \n"
+        labelsAlignStr      = labelsPosition == "Left" ? labelsAlignStrLeft : labelsAlignStrRight
+        var id              = label.new(x=x, y=price, text=labelsAlignStr, textcolor=txtColor, style=labelStyle, textalign=align, color=#00000000)
+        label.set_xy(id, x, price)
+        label.set_text(id, labelsAlignStr)
+        label.set_textcolor(id, txtColor)
+
+_wrap(txt) =>
+    "(" + str.tostring(txt, "#.##") + ")"
+
+_label_txt(level, price) =>
+    if not na(price)
+        l                   = levelsFormat == "Values" ? str.tostring(level) : str.tostring(level * 100) + "%"
+        (levels ? l         : "") + (prices ? _wrap(price) : "")
+
+_crossing_level(sr, r) =>
+    r > sr and r < sr[1] or r < sr and r > sr[1]
+
+diff                        := (isHighLast ? -1 : 1) * math.abs(startPrice - endPrice)
+offset                      = isHighLast ? line.get_y1(lineLastLH) - line.get_y2(lineLastLH) : line.get_y1(lineLastHL) - line.get_y2(lineLastHL)
+offset                      := (isHighLast ? -1 : 1) * math.abs(offset)
+
+processLevel(show, value, colorL) =>
+    float m                 = value
+    r                       = endPrice - offset + (reverse ? -1 : 1) * diff * m
+    if show
+        _draw_line(r, colorL)
+        _draw_label(r, _label_txt(m, r), colorL)
+        if _crossing_level(close, r)
+            alert("Autofib: " + syminfo.ticker + " crossing level " + str.tostring(value))
+
+show_0                      = input.bool(true, "", inline="Level0")
+value_0                     = input.int(0, "", inline="Level0")
+color_0                     = input.color(#787b86, "", inline="Level0")
+processLevel(show_0, value_0, color_0)
+
+show_0_236                  = input.bool(true, "", inline="Level0")
+value_0_236                 = input.float(0.236, "", inline="Level0")
+color_0_236                 = input.color(#f44336, "", inline="Level0")
+processLevel(show_0_236, value_0_236, color_0_236)
+
+show_0_382                  = input.bool(true, "", inline="Level1")
+value_0_382                 = input.float(0.382, "", inline="Level1")
+color_0_382                 = input.color(#81c784, "", inline="Level1")
+processLevel(show_0_382, value_0_382, color_0_382)
+
+show_0_5                    = input.bool(true, "", inline="Level1")
+value_0_5                   = input.float(0.5, "", inline="Level1")
+color_0_5                   = input.color(#4caf50, "", inline="Level1")
+processLevel(show_0_5, value_0_5, color_0_5)
+
+show_0_618                  = input.bool(true, "", inline="Level2")
+value_0_618                 = input.float(0.618, "", inline="Level2")
+color_0_618                 = input.color(#009688, "", inline="Level2")
+processLevel(show_0_618, value_0_618, color_0_618)
+
+show_0_65                   = input.bool(false, "", inline="Level2")
+value_0_65                  = input.float(0.65, "", inline="Level2")
+color_0_65                  = input.color(#009688, "", inline="Level2")
+processLevel(show_0_65, value_0_65, color_0_65)
+
+show_0_786                  = input.bool(true, "", inline="Level3")
+value_0_786                 = input.float(0.786, "", inline="Level3")
+color_0_786                 = input.color(#64b5f6, "", inline="Level3")
+processLevel(show_0_786, value_0_786, color_0_786)
+
+show_1                      = input.bool(true, "", inline="Level3")
+value_1                     = input.int(1, "", inline="Level3")
+color_1                     = input.color(#787b86, "", inline="Level3")
+processLevel(show_1, value_1, color_1)
+
+show_1_272                  = input.bool(false, "", inline="Level4")
+value_1_272                 = input.float(1.272, "", inline="Level4")
+color_1_272                 = input.color(#81c784, "", inline="Level4")
+processLevel(show_1_272, value_1_272, color_1_272)
+
+show_1_414                  = input.bool(false, "", inline="Level4")
+value_1_414                 = input.float(1.414, "", inline="Level4")
+color_1_414                 = input.color(#f44336, "", inline="Level4")
+processLevel(show_1_414, value_1_414, color_1_414)
+
+show_1_618                  = input.bool(true, "", inline="Level5")
+value_1_618                 = input.float(1.618, "", inline="Level5")
+color_1_618                 = input.color(#2196f3, "", inline="Level5")
+processLevel(show_1_618, value_1_618, color_1_618)
+
+show_1_65                   = input.bool(false, "", inline="Level5")
+value_1_65                  = input.float(1.65, "", inline="Level5")
+color_1_65                  = input.color(#2196f3, "", inline="Level5")
+processLevel(show_1_65, value_1_65, color_1_65)
+
+show_2_618                  = input.bool(true, "", inline="Level6")
+value_2_618                 = input.float(2.618, "", inline="Level6")
+color_2_618                 = input.color(#f44336, "", inline="Level6")
+processLevel(show_2_618, value_2_618, color_2_618)
+
+show_2_65                   = input.bool(false, "", inline="Level6")
+value_2_65                  = input.float(2.65, "", inline="Level6")
+color_2_65                  = input.color(#f44336, "", inline="Level6")
+processLevel(show_2_65, value_2_65, color_2_65)
+
+show_3_618                  = input.bool(true, "", inline="Level7")
+value_3_618                 = input.float(3.618, "", inline="Level7")
+color_3_618                 = input.color(#9c27b0, "", inline="Level7")
+processLevel(show_3_618, value_3_618, color_3_618)
+
+show_3_65                   = input.bool(false, "", inline="Level7")
+value_3_65                  = input.float(3.65, "", inline="Level7")
+color_3_65                  = input.color(#9c27b0, "", inline="Level7")
+processLevel(show_3_65, value_3_65, color_3_65)
+
+show_4_236                  = input.bool(true, "", inline="Level8")
+value_4_236                 = input.float(4.236, "", inline="Level8")
+color_4_236                 = input.color(#e91e63, "", inline="Level8")
+processLevel(show_4_236, value_4_236, color_4_236)
+
+show_4_618                  = input.bool(false, "", inline="Level8")
+value_4_618                 = input.float(4.618, "", inline="Level8")
+color_4_618                 = input.color(#81c784, "", inline="Level8")
+processLevel(show_4_618, value_4_618, color_4_618)
+
+show_neg_0_236              = input.bool(false, "", inline="Level9")
+value_neg_0_236             = input.float(-0.236, "", inline="Level9")
+color_neg_0_236             = input.color(#f44336, "", inline="Level9")
+processLevel(show_neg_0_236, value_neg_0_236, color_neg_0_236)
+
+show_neg_0_382              = input.bool(false, "", inline="Level9")
+value_neg_0_382             = input.float(-0.382, "", inline="Level9")
+color_neg_0_382             = input.color(#81c784, "", inline="Level9")
+processLevel(show_neg_0_382, value_neg_0_382, color_neg_0_382)
+
+show_neg_0_618              = input.bool(false, "", inline="Level10")
+value_neg_0_618             = input.float(-0.618, "", inline="Level10")
+color_neg_0_618             = input.color(#009688, "", inline="Level10")
+processLevel(show_neg_0_618, value_neg_0_618, color_neg_0_618)
+
+show_neg_0_65               = input.bool(false, "", inline="Level10")
+value_neg_0_65              = input.float(-0.65, "", inline="Level10")
+color_neg_0_65              = input.color(#009688, "", inline="Level10")
+processLevel(show_neg_0_65, value_neg_0_65, color_neg_0_65)
+// # ======================== Auto Fib Calculation =========================== #

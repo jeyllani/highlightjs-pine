@@ -1,20 +1,347 @@
-<span class="hljs-comment">// # ============================== BB Inputs ================================ #</span>
-BB_source                   <span class="hljs-operator">=</span> <span class="hljs-keyword">input.source</span>( defval <span class="hljs-operator">=</span> <span class="hljs-built_in">close</span>, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Source&quot;</span>,                             inline <span class="hljs-operator">=</span> <span class="hljs-string">&quot;00&quot;</span>, group <span class="hljs-operator">=</span> <span class="hljs-string">&quot;🔵 Bollinger Bands 🔵&quot;</span>)
-BB_length                   <span class="hljs-operator">=</span> <span class="hljs-keyword">input.int</span>(    defval <span class="hljs-operator">=</span> <span class="hljs-number">20</span>, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Length&quot;</span>, minval <span class="hljs-operator">=</span> <span class="hljs-number">1</span>,                    inline <span class="hljs-operator">=</span> <span class="hljs-string">&quot;01&quot;</span>, group <span class="hljs-operator">=</span> <span class="hljs-string">&quot;🔵 Bollinger Bands 🔵&quot;</span>)
-BB_Multiplicator            <span class="hljs-operator">=</span> <span class="hljs-keyword">input.float</span>(  defval <span class="hljs-operator">=</span> <span class="hljs-number">2.0</span>, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;STD&quot;</span>, minval <span class="hljs-operator">=</span> <span class="hljs-number">0.001</span>, maxval <span class="hljs-operator">=</span> <span class="hljs-number">50</span>,     inline <span class="hljs-operator">=</span> <span class="hljs-string">&quot;01&quot;</span>, group <span class="hljs-operator">=</span> <span class="hljs-string">&quot;🔵 Bollinger Bands 🔵&quot;</span>)
-BB_offset                   <span class="hljs-operator">=</span> <span class="hljs-keyword">input.int</span>(    defval <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, title <span class="hljs-operator">=</span><span class="hljs-string">&quot;Offset&quot;</span>, minval <span class="hljs-operator">=</span> <span class="hljs-operator">-</span><span class="hljs-number">500</span>, maxval <span class="hljs-operator">=</span> <span class="hljs-number">500</span>,     inline <span class="hljs-operator">=</span> <span class="hljs-string">&quot;01&quot;</span>, group <span class="hljs-operator">=</span> <span class="hljs-string">&quot;🔵 Bollinger Bands 🔵&quot;</span>)
-<span class="hljs-comment">// # ============================== BB Inputs ================================ #</span>
+<span class="hljs-comment">// ============================= Auto Fib Inputs ============================= #</span>
+depthTooltip                <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;The minimum number of bars that will be taken into account when calculating the indicator.&quot;</span>
+depth                       <span class="hljs-symbol">=</span> sfdinputint(    defval <span class="hljs-symbol">=</span> <span class="hljs-number">10</span>       , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Depth&quot;</span> , minval <span class="hljs-symbol">=</span> <span class="hljs-number">1</span> , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Pivots&quot;</span> , tooltip <span class="hljs-symbol">=</span> depthTooltip , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+reverse                     <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(   defval <span class="hljs-symbol">=</span> <span class="hljs-literal">false</span>    , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Reverse&quot;</span>                    , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;01&quot;</span>           , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+<span class="hljs-keyword">var</span> extendLeft              <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(   defval <span class="hljs-symbol">=</span> <span class="hljs-literal">false</span>    , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Extend Left | Extend Right&quot;</span> , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Extend Lines&quot;</span> , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+<span class="hljs-keyword">var</span> extendRight             <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(   defval <span class="hljs-symbol">=</span> <span class="hljs-literal">true</span>     , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;&quot;</span>                           , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Extend Lines&quot;</span> , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+prices                      <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(   defval <span class="hljs-symbol">=</span> <span class="hljs-literal">true</span>     , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Show Prices&quot;</span>                , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;02&quot;</span>           , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+levels                      <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(   defval <span class="hljs-symbol">=</span> <span class="hljs-literal">true</span>     , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Show Levels&quot;</span>                , inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Levels&quot;</span>         , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+levelsFormat                <span class="hljs-symbol">=</span> <span class="hljs-section">input.string</span>( defval <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Values&quot;</span> , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;&quot;</span>                , options <span class="hljs-symbol">=</span> [<span class="hljs-string">&quot;Values&quot;</span> , <span class="hljs-string">&quot;Percent&quot;</span>] , inline <span class="hljs-symbol">=</span><span class="hljs-string">&quot;Levels&quot;</span> , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+labelsPosition              <span class="hljs-symbol">=</span> <span class="hljs-section">input.string</span>( defval <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Left&quot;</span>   , title <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;Labels Position&quot;</span> , options <span class="hljs-symbol">=</span> [<span class="hljs-string">&quot;Left&quot;</span>   , <span class="hljs-string">&quot;Right&quot;</span>]   , inline <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;03&quot;</span>    , group <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;🎨 Auto Fibonnaci 🎨&quot;</span>)
+<span class="hljs-comment">// # =========================== Auto Fib Inputs ============================= #</span>
 
-<span class="hljs-comment">// # =========================== BB Calculation ============================== #</span>
-BB_basis                    <span class="hljs-operator">=</span> <span class="hljs-keyword">ta.sma</span>(source <span class="hljs-operator">=</span> BB_source, length <span class="hljs-operator">=</span> BB_length)
-BB_std                      <span class="hljs-operator">=</span> BB_Multiplicator <span class="hljs-operator">*</span> <span class="hljs-keyword">ta.stdev</span>(source <span class="hljs-operator">=</span> BB_source, length <span class="hljs-operator">=</span> BB_length)
-BB_upper                    <span class="hljs-operator">=</span> BB_basis <span class="hljs-operator">+</span> BB_std
-BB_lower                    <span class="hljs-operator">=</span> BB_basis <span class="hljs-operator">-</span> BB_std
-<span class="hljs-comment">// # =========================== BB Calculation ============================== #</span>
+<span class="hljs-comment">// # ======================== Auto Fib Calculation =========================== #</span>
+<span class="hljs-keyword">var</span> extending               <span class="hljs-symbol">=</span> <span class="hljs-deletion">extend.none</span>
 
-<span class="hljs-comment">// =============================== BB Plotting =============================== #</span>
-<span class="hljs-keyword">plot</span>(<span class="hljs-keyword">series</span> <span class="hljs-operator">=</span> BB_basis, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Basis&quot;</span>, <span class="hljs-keyword">color</span>  <span class="hljs-operator">=</span> <span class="hljs-keyword">color.new</span>(#FF6D00, <span class="hljs-number">0</span>), offset <span class="hljs-operator">=</span> BB_offset)
-p1                          <span class="hljs-operator">=</span> <span class="hljs-keyword">plot</span>(<span class="hljs-keyword">series</span> <span class="hljs-operator">=</span> BB_upper, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Upper&quot;</span>, <span class="hljs-keyword">color</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">color.new</span>(#<span class="hljs-number">2962</span>FF, <span class="hljs-number">0</span>), offset <span class="hljs-operator">=</span> BB_offset)
-p2                          <span class="hljs-operator">=</span> <span class="hljs-keyword">plot</span>(<span class="hljs-keyword">series</span> <span class="hljs-operator">=</span> BB_lower, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Lower&quot;</span>, <span class="hljs-keyword">color</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">color.new</span>(#<span class="hljs-number">2962</span>FF, <span class="hljs-number">0</span>), offset <span class="hljs-operator">=</span> BB_offset)
-<span class="hljs-keyword">fill</span>(plot1 <span class="hljs-operator">=</span> p1, plot2 <span class="hljs-operator">=</span> p2, title <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Background&quot;</span>, <span class="hljs-keyword">color</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">color.rgb</span>(<span class="hljs-number">33</span>, <span class="hljs-number">150</span>, <span class="hljs-number">243</span>, <span class="hljs-number">95</span>))
-<span class="hljs-comment">// # ============================= BB Plotting =============================== #</span>
+<span class="hljs-keyword">if</span> extendLeft <span class="hljs-keyword">and</span> extendRight
+    extending               <span class="hljs-operator">:=</span> <span class="hljs-deletion">extend.both</span>
+    extending
+<span class="hljs-keyword">if</span> extendLeft <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> extendRight
+    extending               <span class="hljs-operator">:=</span> <span class="hljs-deletion">extend.left</span>
+    extending
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> extendLeft <span class="hljs-keyword">and</span> extendRight
+    extending               <span class="hljs-operator">:=</span> <span class="hljs-deletion">extend.right</span>
+    extending
+
+
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> upperThreshold    <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>.<span class="hljs-number">236</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> lowerThreshold    <span class="hljs-symbol">=</span> <span class="hljs-number">1</span>.<span class="hljs-number">0</span>
+
+<span class="hljs-keyword">var</span> line lineLastHL         <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+<span class="hljs-keyword">var</span> line lineLastLH         <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+<span class="hljs-keyword">var</span> line lineLast           <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> iLastH            <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> iLastL            <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> pLastH            <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> pLastL            <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span>[] iPivotsH        <span class="hljs-symbol">=</span> <span class="hljs-section">array.new_float</span>()
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span>[] iPivotsL        <span class="hljs-symbol">=</span> <span class="hljs-section">array.new_float</span>()
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span>[] pPivotsH        <span class="hljs-symbol">=</span> <span class="hljs-section">array.new_float</span>()
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span>[] pPivotsL        <span class="hljs-symbol">=</span> <span class="hljs-section">array.new_float</span>()
+
+<span class="hljs-keyword">var</span> isHighLast              <span class="hljs-symbol">=</span> <span class="hljs-literal">false</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> startPrice        <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> endPrice          <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">float</span> diff              <span class="hljs-symbol">=</span> <span class="hljs-deletion">na</span>
+
+pivots(src, length, isHigh) <span class="hljs-operator">=&gt;</span>
+    l2                      <span class="hljs-symbol">=</span> length <span class="hljs-operator">*</span> <span class="hljs-number">2</span>
+    c                       <span class="hljs-symbol">=</span> <span class="hljs-section">nz</span>(src[length])
+    ok                      <span class="hljs-symbol">=</span> <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">for</span> i                   <span class="hljs-symbol">=</span> <span class="hljs-number">0</span> to l2 by <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> isHigh <span class="hljs-keyword">and</span> src[i] <span class="hljs-operator">&gt;</span> c
+            ok              <span class="hljs-operator">:=</span> <span class="hljs-literal">false</span>
+            ok
+
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> isHigh <span class="hljs-keyword">and</span> src[i] <span class="hljs-operator">&lt;</span> c
+            ok              <span class="hljs-operator">:=</span> <span class="hljs-literal">false</span>
+            ok
+    <span class="hljs-keyword">if</span> ok
+        [<span class="hljs-deletion">bar_index</span>[length], c]
+    <span class="hljs-keyword">else</span>
+        [<span class="hljs-section">int</span>(<span class="hljs-deletion">na</span>), <span class="hljs-section">float</span>(<span class="hljs-deletion">na</span>)]
+[iH, pH]                    <span class="hljs-symbol">=</span> pivots(<span class="hljs-deletion">high</span>, depth <span class="hljs-operator">/</span> <span class="hljs-number">2</span>, <span class="hljs-literal">true</span>)
+[iL, pL]                    <span class="hljs-symbol">=</span> pivots(<span class="hljs-deletion">low</span>, depth <span class="hljs-operator">/</span> <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>)
+
+countPivotsH                <span class="hljs-symbol">=</span> <span class="hljs-section">array.size</span>(iPivotsH)
+countPivotsL                <span class="hljs-symbol">=</span> <span class="hljs-section">array.size</span>(iPivotsL)
+
+<span class="hljs-keyword">if</span> countPivotsH <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> countPivotsL <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span>
+    iLastH                  <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(iPivotsH, countPivotsH <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+    iLastL                  <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(iPivotsL, countPivotsL <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+    isHighLast              <span class="hljs-operator">:=</span> iLastH <span class="hljs-operator">&gt;</span> iLastL
+    iLastH                  <span class="hljs-operator">:=</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> isHighLast
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(iH)
+            pLastH          <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(pPivotsH, countPivotsH <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">if</span> pH <span class="hljs-operator">&gt;</span> pLastH
+                <span class="hljs-section">array.set</span>(iPivotsH, countPivotsH <span class="hljs-operator">-</span> <span class="hljs-number">1</span>, iH)
+                <span class="hljs-section">array.set</span>(pPivotsH, countPivotsH <span class="hljs-operator">-</span> <span class="hljs-number">1</span>, pH)
+            iH              <span class="hljs-operator">:=</span> <span class="hljs-deletion">na</span>
+            iH
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(iL)
+            pLastL          <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(pPivotsL, countPivotsL <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">if</span> pL <span class="hljs-operator">&lt;</span> pLastL
+                <span class="hljs-section">array.set</span>(iPivotsL, countPivotsL <span class="hljs-operator">-</span> <span class="hljs-number">1</span>, iL)
+                <span class="hljs-section">array.set</span>(pPivotsL, countPivotsL <span class="hljs-operator">-</span> <span class="hljs-number">1</span>, pL)
+            iL              <span class="hljs-operator">:=</span> <span class="hljs-deletion">na</span>
+            iL
+
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(iH)
+    <span class="hljs-section">array.push</span>(iPivotsH, iH)
+    <span class="hljs-section">array.push</span>(pPivotsH, pH)
+
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(iL)
+    <span class="hljs-section">array.push</span>(iPivotsL, iL)
+    <span class="hljs-section">array.push</span>(pPivotsL, pL)
+
+pPivotsHCopy                <span class="hljs-symbol">=</span> <span class="hljs-section">array.copy</span>(pPivotsH)
+pPivotsLCopy                <span class="hljs-symbol">=</span> <span class="hljs-section">array.copy</span>(pPivotsL)
+iPivotsHCopy                <span class="hljs-symbol">=</span> <span class="hljs-section">array.copy</span>(iPivotsH)
+iPivotsLCopy                <span class="hljs-symbol">=</span> <span class="hljs-section">array.copy</span>(iPivotsL)
+
+<span class="hljs-keyword">if</span> <span class="hljs-deletion">barstate.islast</span>
+    <span class="hljs-keyword">for</span> j                   <span class="hljs-symbol">=</span> <span class="hljs-deletion">bar_index</span> to <span class="hljs-number">0</span> by <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-section">array.size</span>(iPivotsHCopy) <span class="hljs-operator">==</span> <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> <span class="hljs-section">array.size</span>(iPivotsLCopy) <span class="hljs-operator">==</span> <span class="hljs-number">0</span>
+            break
+
+        iLastH              <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(iPivotsHCopy)
+        iLastL              <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(iPivotsLCopy)
+
+        pLastH              <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(pPivotsHCopy)
+        pLastL              <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(pPivotsLCopy)
+
+        iPrevPivot          <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+        pPrevPivot          <span class="hljs-symbol">=</span> <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+
+        isHighLast          <span class="hljs-operator">:=</span> iLastH <span class="hljs-operator">&gt;</span> iLastL
+
+        <span class="hljs-keyword">if</span> isHighLast
+            <span class="hljs-keyword">for</span> i           <span class="hljs-symbol">=</span> <span class="hljs-section">array.size</span>(iPivotsHCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span> to <span class="hljs-number">0</span> by <span class="hljs-number">1</span>
+                <span class="hljs-keyword">if</span> i <span class="hljs-operator">&lt;</span> <span class="hljs-number">0</span>
+                    break
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-section">array.get</span>(iPivotsHCopy, i) <span class="hljs-operator">&lt;</span> iLastL
+                    break
+                <span class="hljs-keyword">if</span> <span class="hljs-section">array.get</span>(pPivotsHCopy, i) <span class="hljs-operator">&gt;</span> pLastH
+                    iLastH  <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(iPivotsHCopy)
+                    pLastH  <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(pPivotsHCopy)
+                    pLastH
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-section">array.remove</span>(iPivotsHCopy, i)
+                    <span class="hljs-section">array.remove</span>(pPivotsHCopy, i)
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">for</span> i           <span class="hljs-symbol">=</span> <span class="hljs-section">array.size</span>(iPivotsLCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span> to <span class="hljs-number">0</span> by <span class="hljs-number">1</span>
+                <span class="hljs-keyword">if</span> i <span class="hljs-operator">&lt;</span> <span class="hljs-number">0</span>
+                    break
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-section">array.get</span>(iPivotsLCopy, i) <span class="hljs-operator">&lt;</span> iLastH
+                    break
+                <span class="hljs-keyword">if</span> <span class="hljs-section">array.get</span>(pPivotsLCopy, i) <span class="hljs-operator">&lt;</span> pLastL
+                    iLastL  <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(iPivotsLCopy)
+                    pLastL  <span class="hljs-operator">:=</span> <span class="hljs-section">array.pop</span>(pPivotsLCopy)
+                    pLastL
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-section">array.remove</span>(iPivotsLCopy, i)
+                    <span class="hljs-section">array.remove</span>(pPivotsLCopy, i)
+
+        <span class="hljs-keyword">if</span> <span class="hljs-section">array.size</span>(iPivotsHCopy) <span class="hljs-operator">==</span> <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> <span class="hljs-section">array.size</span>(iPivotsLCopy) <span class="hljs-operator">==</span> <span class="hljs-number">0</span>
+            break
+
+        isHighLast          <span class="hljs-operator">:=</span> iLastH <span class="hljs-operator">&gt;</span> iLastL
+
+        <span class="hljs-keyword">if</span> isHighLast
+            iPrevPivot      <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(iPivotsHCopy, <span class="hljs-section">array.size</span>(iPivotsHCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            pPrevPivot      <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(pPivotsHCopy, <span class="hljs-section">array.size</span>(iPivotsHCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            pPrevPivot
+        <span class="hljs-keyword">else</span>
+            iPrevPivot      <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(iPivotsLCopy, <span class="hljs-section">array.size</span>(iPivotsLCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            pPrevPivot      <span class="hljs-operator">:=</span> <span class="hljs-section">array.get</span>(pPivotsLCopy, <span class="hljs-section">array.size</span>(iPivotsLCopy) <span class="hljs-operator">-</span> <span class="hljs-number">1</span>)
+            pPrevPivot
+
+        <span class="hljs-keyword">if</span> isHighLast
+            startPrice      <span class="hljs-operator">:=</span> pPrevPivot
+            endPrice        <span class="hljs-operator">:=</span> pLastL
+            diff            <span class="hljs-operator">:=</span> <span class="hljs-section">math.abs</span>(startPrice <span class="hljs-operator">-</span> endPrice)
+            <span class="hljs-keyword">if</span> pLastH <span class="hljs-operator">&gt;</span> endPrice <span class="hljs-operator">+</span> diff <span class="hljs-operator">*</span> lowerThreshold <span class="hljs-keyword">or</span> pLastH <span class="hljs-operator">&lt;</span> endPrice <span class="hljs-operator">+</span> diff <span class="hljs-operator">*</span> upperThreshold
+                <span class="hljs-section">array.push</span>(iPivotsLCopy, iLastL)
+                <span class="hljs-section">array.push</span>(pPivotsLCopy, pLastL)
+                continue
+            <span class="hljs-section">line.delete</span>(lineLastHL)
+            <span class="hljs-section">line.delete</span>(lineLastLH)
+            <span class="hljs-section">line.delete</span>(lineLast)
+            lineLastHL      <span class="hljs-operator">:=</span> <span class="hljs-section">line.new</span>(<span class="hljs-section">int</span>(iPrevPivot), pPrevPivot, <span class="hljs-section">int</span>(iLastL), pLastL, color<span class="hljs-symbol">=</span><span class="hljs-deletion">color.red</span>, width<span class="hljs-symbol">=</span><span class="hljs-number">1</span>, style<span class="hljs-symbol">=</span><span class="hljs-deletion">line.style_dashed</span>)
+            lineLastLH      <span class="hljs-operator">:=</span> <span class="hljs-section">line.new</span>(<span class="hljs-section">int</span>(iLastL), pLastL, <span class="hljs-section">int</span>(iLastH), pLastH, color<span class="hljs-symbol">=</span><span class="hljs-deletion">color.green</span>, width<span class="hljs-symbol">=</span><span class="hljs-number">1</span>, style<span class="hljs-symbol">=</span><span class="hljs-deletion">line.style_dashed</span>)
+            lineLast        <span class="hljs-operator">:=</span> lineLastLH
+            lineLast
+        <span class="hljs-keyword">else</span>
+            startPrice      <span class="hljs-operator">:=</span> pPrevPivot
+            endPrice        <span class="hljs-operator">:=</span> pLastH
+            diff            <span class="hljs-operator">:=</span> <span class="hljs-section">math.abs</span>(startPrice <span class="hljs-operator">-</span> endPrice)
+            <span class="hljs-keyword">if</span> pLastL <span class="hljs-operator">&lt;</span> endPrice <span class="hljs-operator">-</span> diff <span class="hljs-operator">*</span> lowerThreshold <span class="hljs-keyword">or</span> pLastL <span class="hljs-operator">&gt;</span> endPrice <span class="hljs-operator">-</span> diff <span class="hljs-operator">*</span> upperThreshold
+                <span class="hljs-section">array.push</span>(iPivotsHCopy, iLastH)
+                <span class="hljs-section">array.push</span>(pPivotsHCopy, pLastH)
+                continue
+            <span class="hljs-section">line.delete</span>(lineLastHL)
+            <span class="hljs-section">line.delete</span>(lineLastLH)
+            <span class="hljs-section">line.delete</span>(lineLast)
+            lineLastLH      <span class="hljs-operator">:=</span> <span class="hljs-section">line.new</span>(<span class="hljs-section">int</span>(iPrevPivot), pPrevPivot, <span class="hljs-section">int</span>(iLastH), pLastH, color<span class="hljs-symbol">=</span><span class="hljs-deletion">color.red</span>, width<span class="hljs-symbol">=</span><span class="hljs-number">1</span>, style<span class="hljs-symbol">=</span><span class="hljs-deletion">line.style_dashed</span>)
+            lineLastHL      <span class="hljs-operator">:=</span> <span class="hljs-section">line.new</span>(<span class="hljs-section">int</span>(iLastH), pLastH, <span class="hljs-section">int</span>(iLastL), pLastL, color<span class="hljs-symbol">=</span><span class="hljs-deletion">color.green</span>, width<span class="hljs-symbol">=</span><span class="hljs-number">1</span>, style<span class="hljs-symbol">=</span><span class="hljs-deletion">line.style_dashed</span>)
+            lineLast        <span class="hljs-operator">:=</span> lineLastHL
+            lineLast
+        break
+
+_draw_line(price, col) <span class="hljs-operator">=&gt;</span>
+    <span class="hljs-keyword">var</span> id                  <span class="hljs-symbol">=</span> <span class="hljs-section">line.new</span>(<span class="hljs-number">0</span>, price, <span class="hljs-number">0</span>, price, color<span class="hljs-symbol">=</span>col, width<span class="hljs-symbol">=</span><span class="hljs-number">1</span>, extend<span class="hljs-symbol">=</span>extending)
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(lineLast)
+        <span class="hljs-section">line.set_xy1</span>(id, <span class="hljs-section">line.get_x1</span>(lineLast), price)
+        <span class="hljs-section">line.set_xy2</span>(id, <span class="hljs-section">line.get_x2</span>(lineLast), price)
+
+_draw_label(price, txt, txtColor) <span class="hljs-operator">=&gt;</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(price)
+        x                   <span class="hljs-symbol">=</span> labelsPosition <span class="hljs-operator">==</span> <span class="hljs-string">&quot;Left&quot;</span> <span class="hljs-operator">?</span> <span class="hljs-section">line.get_x1</span>(lineLast) <span class="hljs-operator">:</span> <span class="hljs-keyword">not</span> extendRight <span class="hljs-operator">?</span> <span class="hljs-section">line.get_x2</span>(lineLast) <span class="hljs-operator">:</span> <span class="hljs-deletion">bar_index</span>
+        labelStyle          <span class="hljs-symbol">=</span> labelsPosition <span class="hljs-operator">==</span> <span class="hljs-string">&quot;Left&quot;</span> <span class="hljs-operator">?</span> <span class="hljs-deletion">label.style_label_right</span> <span class="hljs-operator">:</span> <span class="hljs-deletion">label.style_label_left</span>
+        align               <span class="hljs-symbol">=</span> labelsPosition <span class="hljs-operator">==</span> <span class="hljs-string">&quot;Left&quot;</span> <span class="hljs-operator">?</span> <span class="hljs-deletion">text.align_right</span> <span class="hljs-operator">:</span> <span class="hljs-deletion">text.align_left</span>
+        labelsAlignStrLeft  <span class="hljs-symbol">=</span> txt <span class="hljs-operator">+</span> <span class="hljs-string">&quot;\n ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏ \n&quot;</span>
+        labelsAlignStrRight <span class="hljs-symbol">=</span> <span class="hljs-string">&quot;       &quot;</span> <span class="hljs-operator">+</span> txt <span class="hljs-operator">+</span> <span class="hljs-string">&quot;\n ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏  ‏ \n&quot;</span>
+        labelsAlignStr      <span class="hljs-symbol">=</span> labelsPosition <span class="hljs-operator">==</span> <span class="hljs-string">&quot;Left&quot;</span> <span class="hljs-operator">?</span> labelsAlignStrLeft <span class="hljs-operator">:</span> labelsAlignStrRight
+        <span class="hljs-keyword">var</span> id              <span class="hljs-symbol">=</span> <span class="hljs-section">label.new</span>(x<span class="hljs-symbol">=</span>x, y<span class="hljs-symbol">=</span>price, text<span class="hljs-symbol">=</span>labelsAlignStr, textcolor<span class="hljs-symbol">=</span>txtColor, style<span class="hljs-symbol">=</span>labelStyle, textalign<span class="hljs-symbol">=</span>align, color<span class="hljs-symbol">=</span>#00000000)
+        <span class="hljs-section">label.set_xy</span>(id, x, price)
+        <span class="hljs-section">label.set_text</span>(id, labelsAlignStr)
+        <span class="hljs-section">label.set_textcolor</span>(id, txtColor)
+
+_wrap(txt) <span class="hljs-operator">=&gt;</span>
+    <span class="hljs-string">&quot;(&quot;</span> <span class="hljs-operator">+</span> <span class="hljs-section">str.tostring</span>(txt, <span class="hljs-string">&quot;#.##&quot;</span>) <span class="hljs-operator">+</span> <span class="hljs-string">&quot;)&quot;</span>
+
+_label_txt(level, price) <span class="hljs-operator">=&gt;</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-section">na</span>(price)
+        l                   <span class="hljs-symbol">=</span> levelsFormat <span class="hljs-operator">==</span> <span class="hljs-string">&quot;Values&quot;</span> <span class="hljs-operator">?</span> <span class="hljs-section">str.tostring</span>(level) <span class="hljs-operator">:</span> <span class="hljs-section">str.tostring</span>(level <span class="hljs-operator">*</span> <span class="hljs-number">100</span>) <span class="hljs-operator">+</span> <span class="hljs-string">&quot;%&quot;</span>
+        (levels <span class="hljs-operator">?</span> l         <span class="hljs-operator">:</span> <span class="hljs-string">&quot;&quot;</span>) <span class="hljs-operator">+</span> (prices <span class="hljs-operator">?</span> _wrap(price) <span class="hljs-operator">:</span> <span class="hljs-string">&quot;&quot;</span>)
+
+_crossing_level(sr, r) <span class="hljs-operator">=&gt;</span>
+    r <span class="hljs-operator">&gt;</span> sr <span class="hljs-keyword">and</span> r <span class="hljs-operator">&lt;</span> sr[<span class="hljs-number">1</span>] <span class="hljs-keyword">or</span> r <span class="hljs-operator">&lt;</span> sr <span class="hljs-keyword">and</span> r <span class="hljs-operator">&gt;</span> sr[<span class="hljs-number">1</span>]
+
+diff                        <span class="hljs-operator">:=</span> (isHighLast <span class="hljs-operator">?</span> <span class="hljs-operator">-</span><span class="hljs-number">1</span> <span class="hljs-operator">:</span> <span class="hljs-number">1</span>) <span class="hljs-operator">*</span> <span class="hljs-section">math.abs</span>(startPrice <span class="hljs-operator">-</span> endPrice)
+offset                      <span class="hljs-symbol">=</span> isHighLast <span class="hljs-operator">?</span> <span class="hljs-section">line.get_y1</span>(lineLastLH) <span class="hljs-operator">-</span> <span class="hljs-section">line.get_y2</span>(lineLastLH) <span class="hljs-operator">:</span> <span class="hljs-section">line.get_y1</span>(lineLastHL) <span class="hljs-operator">-</span> <span class="hljs-section">line.get_y2</span>(lineLastHL)
+offset                      <span class="hljs-operator">:=</span> (isHighLast <span class="hljs-operator">?</span> <span class="hljs-operator">-</span><span class="hljs-number">1</span> <span class="hljs-operator">:</span> <span class="hljs-number">1</span>) <span class="hljs-operator">*</span> <span class="hljs-section">math.abs</span>(offset)
+
+processLevel(show, value, colorL) <span class="hljs-operator">=&gt;</span>
+    <span class="hljs-keyword">float</span> m                 <span class="hljs-symbol">=</span> value
+    r                       <span class="hljs-symbol">=</span> endPrice <span class="hljs-operator">-</span> offset <span class="hljs-operator">+</span> (reverse <span class="hljs-operator">?</span> <span class="hljs-operator">-</span><span class="hljs-number">1</span> <span class="hljs-operator">:</span> <span class="hljs-number">1</span>) <span class="hljs-operator">*</span> diff <span class="hljs-operator">*</span> m
+    <span class="hljs-keyword">if</span> show
+        _draw_line(r, colorL)
+        _draw_label(r, _label_txt(m, r), colorL)
+        <span class="hljs-keyword">if</span> _crossing_level(<span class="hljs-deletion">close</span>, r)
+            <span class="hljs-section">alert</span>(<span class="hljs-string">&quot;Autofib: &quot;</span> <span class="hljs-operator">+</span> <span class="hljs-deletion">syminfo.ticker</span> <span class="hljs-operator">+</span> <span class="hljs-string">&quot; crossing level &quot;</span> <span class="hljs-operator">+</span> <span class="hljs-section">str.tostring</span>(value))
+
+show_0                      <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+value_0                     <span class="hljs-symbol">=</span> <span class="hljs-section">input.int</span>(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+color_0                     <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#787b86, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+processLevel(show_0, value_0, color_0)
+
+show_0_236                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+value_0_236                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">236</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+color_0_236                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#f44336, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level0&quot;</span>)
+processLevel(show_0_236, value_0_236, color_0_236)
+
+show_0_382                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+value_0_382                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">382</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+color_0_382                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#81c784, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+processLevel(show_0_382, value_0_382, color_0_382)
+
+show_0_5                    <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+value_0_5                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">5</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+color_0_5                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#4caf50, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level1&quot;</span>)
+processLevel(show_0_5, value_0_5, color_0_5)
+
+show_0_618                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+value_0_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+color_0_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#009688, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+processLevel(show_0_618, value_0_618, color_0_618)
+
+show_0_65                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+value_0_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">65</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+color_0_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#009688, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level2&quot;</span>)
+processLevel(show_0_65, value_0_65, color_0_65)
+
+show_0_786                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+value_0_786                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">0</span>.<span class="hljs-number">786</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+color_0_786                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#64b5f6, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+processLevel(show_0_786, value_0_786, color_0_786)
+
+show_1                      <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+value_1                     <span class="hljs-symbol">=</span> <span class="hljs-section">input.int</span>(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+color_1                     <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#787b86, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level3&quot;</span>)
+processLevel(show_1, value_1, color_1)
+
+show_1_272                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+value_1_272                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">1</span>.<span class="hljs-number">272</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+color_1_272                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#81c784, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+processLevel(show_1_272, value_1_272, color_1_272)
+
+show_1_414                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+value_1_414                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">1</span>.<span class="hljs-number">414</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+color_1_414                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#f44336, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level4&quot;</span>)
+processLevel(show_1_414, value_1_414, color_1_414)
+
+show_1_618                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+value_1_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">1</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+color_1_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#2196f3, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+processLevel(show_1_618, value_1_618, color_1_618)
+
+show_1_65                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+value_1_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">1</span>.<span class="hljs-number">65</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+color_1_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#2196f3, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level5&quot;</span>)
+processLevel(show_1_65, value_1_65, color_1_65)
+
+show_2_618                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+value_2_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">2</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+color_2_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#f44336, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+processLevel(show_2_618, value_2_618, color_2_618)
+
+show_2_65                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+value_2_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">2</span>.<span class="hljs-number">65</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+color_2_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#f44336, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level6&quot;</span>)
+processLevel(show_2_65, value_2_65, color_2_65)
+
+show_3_618                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+value_3_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">3</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+color_3_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#9c27b0, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+processLevel(show_3_618, value_3_618, color_3_618)
+
+show_3_65                   <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+value_3_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">3</span>.<span class="hljs-number">65</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+color_3_65                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#9c27b0, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level7&quot;</span>)
+processLevel(show_3_65, value_3_65, color_3_65)
+
+show_4_236                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+value_4_236                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">4</span>.<span class="hljs-number">236</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+color_4_236                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#e91e63, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+processLevel(show_4_236, value_4_236, color_4_236)
+
+show_4_618                  <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+value_4_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-number">4</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+color_4_618                 <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#81c784, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level8&quot;</span>)
+processLevel(show_4_618, value_4_618, color_4_618)
+
+show_neg_0_236              <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+value_neg_0_236             <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-operator">-</span><span class="hljs-number">0</span>.<span class="hljs-number">236</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+color_neg_0_236             <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#f44336, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+processLevel(show_neg_0_236, value_neg_0_236, color_neg_0_236)
+
+show_neg_0_382              <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+value_neg_0_382             <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-operator">-</span><span class="hljs-number">0</span>.<span class="hljs-number">382</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+color_neg_0_382             <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#81c784, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level9&quot;</span>)
+processLevel(show_neg_0_382, value_neg_0_382, color_neg_0_382)
+
+show_neg_0_618              <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+value_neg_0_618             <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-operator">-</span><span class="hljs-number">0</span>.<span class="hljs-number">618</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+color_neg_0_618             <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#009688, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+processLevel(show_neg_0_618, value_neg_0_618, color_neg_0_618)
+
+show_neg_0_65               <span class="hljs-symbol">=</span> <span class="hljs-section">input.bool</span>(<span class="hljs-literal">false</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+value_neg_0_65              <span class="hljs-symbol">=</span> <span class="hljs-section">input.float</span>(<span class="hljs-operator">-</span><span class="hljs-number">0</span>.<span class="hljs-number">65</span>, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+color_neg_0_65              <span class="hljs-symbol">=</span> <span class="hljs-section">input.color</span>(#009688, <span class="hljs-string">&quot;&quot;</span>, inline<span class="hljs-symbol">=</span><span class="hljs-string">&quot;Level10&quot;</span>)
+processLevel(show_neg_0_65, value_neg_0_65, color_neg_0_65)
+<span class="hljs-comment">// # ======================== Auto Fib Calculation =========================== #</span>
