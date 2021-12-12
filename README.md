@@ -19,7 +19,6 @@ var hljs = require('highlight.js');
 var hljsPine = require('highlightjs-pine');
 
 hljs.registerLanguage("pine", hljsPine);
-hljs.highlightAll();
 ```
 ## License
 - Highlight.js is released under version 2 of the GPL. See LICENSE file for details.
